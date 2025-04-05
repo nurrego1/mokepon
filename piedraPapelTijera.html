@@ -6,9 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Piedra Papel o Tijera</title>
     <script>
+        function aleatorio(min, max) {
+           return Math.floor(Math.random() * ( max - min + 1 ) + min);
+        }
+        
         //1 es Piedra, 2 es Papel, 3 es Tijera
         let jugador = 0;
-        let PC = 2;
+        let PC = aleatorio(1, 3);
 
         jugador = prompt("Elige: 1 para piedra 🪨, 2 para papel 📄 o 3 para tijera ✂️");
 
@@ -21,31 +25,33 @@
         } else if (jugador == 3) {
             alert("El jugador eligió: Tijera ✂️");
         } else {
-            alert("Elegiste PERDER! Elige entre 1, 2 o 3.");
+            alert("Elegiste PERDER! 😰 Elige entre 1, 2 o 3.");
         }
 
         if (PC == 1) {
             alert("El computador eligió: Piedra 🪨");
         } else if (PC == 2) {
             alert("El computador eligió: Papel 📄");
-        } else (PC == 3) {
+        } else if (PC == 3) {
             alert("El computador eligió: Tijera ✂️");
+        } else {
+            alert("El computador eligió: PERDER! 😰");
         }
 
         //COMBATE
         if (jugador == PC) {
             alert("EMPATE");
         } else if (jugador == 1 && PC == 3) {
-            alert("GANASTE! 🥳");
+            alert("GANASTE! 🥳🎉🎊🎈🎖️");
         } else if (jugador == 2 && PC == 1) {
-            alert("GANASTE! 🥳");
+            alert("GANASTE! 🥳🎉🎊🎈🎖️");
         } else if (jugador == 3 && PC == 2) {
-            alert("GANASTE! 🥳");
+            alert("GANASTE! 🥳🎉🎊🎈🎖️");
         } else {
-            alert("PERDISTE! 😥");
+            alert("PERDISTE! 😥😭");
         }
 
-
+        
         //let userChoice = prompt("Elige: piedra, papel o tijera").toLowerCase();
         //let computerChoice = Math.random();
     </script>
