@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<!-- doctype es para la compatibilidad con los navegadores-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piedra Papel o Tijera</title>
+    <script>
+        //1 es Piedra, 2 es Papel, 3 es Tijera
+        let jugador = 0;
+        let PC = 2;
+
+        jugador = prompt("Elige: 1 para piedra, 2 para papel o 3 para tijera");
+
+        //alert("El jugador eligió: " + jugador);
+
+        if (jugador == 1) {
+            alert("El jugador eligió: Piedra");
+        } else if (jugador == 2) {
+            alert("El jugador eligió: Papel");
+        } else if (jugador == 3) {
+            alert("El jugador eligió: Tijera");
+        } else {
+            alert("Elegiste PERDER! Elige entre 1, 2 o 3.");
+        }
+
+        //let userChoice = prompt("Elige: piedra, papel o tijera").toLowerCase();
+        //let computerChoice = Math.random();
+    </script>
+</head>
+<body>
+    <h1>Piedra Papel o Tijera</h1>
+</body>
+</html>
