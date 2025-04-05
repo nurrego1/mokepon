@@ -9,7 +9,7 @@
         function aleatorio(min, max) {
            return Math.floor(Math.random() * ( max - min + 1 ) + min);
         }
-        
+
         //1 es Piedra, 2 es Papel, 3 es Tijera
         let jugador = 0;
         let PC = aleatorio(1, 3);
@@ -41,11 +41,7 @@
         //COMBATE
         if (jugador == PC) {
             alert("EMPATE");
-        } else if (jugador == 1 && PC == 3) {
-            alert("GANASTE! 🥳🎉🎊🎈🎖️");
-        } else if (jugador == 2 && PC == 1) {
-            alert("GANASTE! 🥳🎉🎊🎈🎖️");
-        } else if (jugador == 3 && PC == 2) {
+        } else if ((jugador == 1 && PC == 3) || (jugador == 2 && PC == 1) || (jugador == 3 && PC == 2)) {
             alert("GANASTE! 🥳🎉🎊🎈🎖️");
         } else {
             alert("PERDISTE! 😥😭");
