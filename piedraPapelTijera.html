@@ -10,19 +10,41 @@
         let jugador = 0;
         let PC = 2;
 
-        jugador = prompt("Elige: 1 para piedra, 2 para papel o 3 para tijera");
+        jugador = prompt("Elige: 1 para piedra 🪨, 2 para papel 📄 o 3 para tijera ✂️");
 
         //alert("El jugador eligió: " + jugador);
 
         if (jugador == 1) {
-            alert("El jugador eligió: Piedra");
+            alert("El jugador eligió: Piedra 🪨");
         } else if (jugador == 2) {
-            alert("El jugador eligió: Papel");
+            alert("El jugador eligió: Papel 📄");
         } else if (jugador == 3) {
-            alert("El jugador eligió: Tijera");
+            alert("El jugador eligió: Tijera ✂️");
         } else {
             alert("Elegiste PERDER! Elige entre 1, 2 o 3.");
         }
+
+        if (PC == 1) {
+            alert("El computador eligió: Piedra 🪨");
+        } else if (PC == 2) {
+            alert("El computador eligió: Papel 📄");
+        } else (PC == 3) {
+            alert("El computador eligió: Tijera ✂️");
+        }
+
+        //COMBATE
+        if (jugador == PC) {
+            alert("EMPATE");
+        } else if (jugador == 1 && PC == 3) {
+            alert("GANASTE! 🥳");
+        } else if (jugador == 2 && PC == 1) {
+            alert("GANASTE! 🥳");
+        } else if (jugador == 3 && PC == 2) {
+            alert("GANASTE! 🥳");
+        } else {
+            alert("PERDISTE! 😥");
+        }
+
 
         //let userChoice = prompt("Elige: piedra, papel o tijera").toLowerCase();
         //let computerChoice = Math.random();
