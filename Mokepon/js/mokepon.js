@@ -10,23 +10,29 @@ function iniciarJuego(){
 
 //Funcion seleccionar Mascota
 function seleccionarMascotaJugador() {
-    if (document.getElementById("hipodoge").checked) {
-        console.log("Seleccionaste Hipodoge");
-    } else if (document.getElementById("capipepo").checked) {
-        console.log("Seleccionaste capipepo");
-    } else if (document.getElementById("ratigueya").checked) {
-        console.log("Seleccionaste ratigueya");
-    } else if (document.getElementById("langostelvis").checked) {
-        console.log("Seleccionaste langostelvis");
-    } else if (document.getElementById("tucapalma").checked) {
-        console.log("Seleccionaste tucapalma");
-    } else if(document.getElementById("pydos").checked) {
-        console.log("Seleccionaste pydos");
+    let inputHipodoge = document.getElementById("hipodoge");
+    let inputCapipepo = document.getElementById("capipepo");
+    let inputRatigueya = document.getElementById("ratigueya");
+    let inputLangostelvis = document.getElementById("langostelvis");
+    let inputTucapalma = document.getElementById("tucapalma");
+    let inputPydos = document.getElementById("pydos");
+    let spanMascotaJugador = document.getElementById("mascota-jugador");
+
+    if (inputHipodoge.checked) {
+        spanMascotaJugador.innerHTML = "Hipodoge";
+    } else if (inputCapipepo.checked) {
+        spanMascotaJugador.innerHTML = "Capipepo";
+    } else if (inputRatigueya.checked) {
+        spanMascotaJugador.innerHTML ="Ratigueya";
+    } else if (inputLangostelvis.checked) {
+        spanMascotaJugador.innerHTML = "Langostelvis";
+    } else if (inputTucapalma.checked) {
+        spanMascotaJugador.innerHTML = "Tucapalma"; 
+    } else if(inputPydos.checked) {
+        spanMascotaJugador.innerHTML ="Pydos";
     } else {
         alert("Selecciona una mascota");
     }
-
-    alert("Seleccionaste una mascota!!");
 
 }
 
