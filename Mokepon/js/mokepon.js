@@ -1,11 +1,24 @@
+//Variables globales
+let ataqueJugador;
+let ataqueEnemigo;
+let vidasJugador = 3;        
+let vidasEnemigo = 3;
+
 function iniciarJuego(){
     //Variables
     let botonMascota = document.getElementById("boton-mascota");
     let botonFuego = document.getElementById("boton-fuego");  
+    let botonAgua = document.getElementById("boton-agua");
+    let botonTierra = document.getElementById("boton-tierra");
+    let botonAire = document.getElementById("boton-aire");
     
     
     //Event listeners
     botonMascota.addEventListener("click",seleccionarMascotaJugador); //El primer elemento es el evento que va a escuchar, y el segundo es la accion o funcion que se va a ejecutar
+    botonFuego.addEventListener("click", ataqueFuego);
+    botonAgua.addEventListener("click", ataqueAgua);
+    botonTierra.addEventListener("click", ataqueTierra);
+    botonAire.addEventListener("click", ataqueAire)
 }
 
 //Funcion seleccionar Mascota
@@ -58,6 +71,51 @@ function seleccionarMascotaEnemigo() {
         alert("Selecciona una mascota");
     }
 
+}
+
+//Funcion ataque de Fuego
+function ataqueFuego() {
+    ataqueJugador = "FUEGO";
+    console.log(ataqueJugador);
+    ataqueAleatorioEnemigo()
+    //combate();
+}
+
+//Funcion ataque de Agua    
+function ataqueAgua() {
+    ataqueJugador = "AGUA";
+    console.log(ataqueJugador);
+    ataqueAleatorioEnemigo()
+}
+
+//Funcion ataque de Tierra    
+function ataqueTierra() {
+    ataqueJugador = "TIERRA";
+    console.log(ataqueJugador);
+    ataqueAleatorioEnemigo()
+}
+
+//Funcion ataque de Aire    
+function ataqueAire() {
+    ataqueJugador = "AIRE";
+    console.log(ataqueJugador);
+    ataqueAleatorioEnemigo()
+}
+
+//funcion ataque aleatorio
+function ataqueAleatorioEnemigo() {
+    let ataqueAleatorio = aleatorio(1, 4);
+    
+    if (ataqueAleatorio == 1) {
+        ataqueEnemigo = "FUEGO";
+    } else if (ataqueAleatorio == 2) {
+        ataqueEnemigo = "AGUA";
+    } else if (ataqueAleatorio == 3) {
+        ataqueEnemigo = "TIERRA";
+    } else if (ataqueAleatorio == 4) {
+        ataqueEnemigo = "AIRE";
+    }
+    console.log(ataqueEnemigo);
 }
 
 //funcion generadora de numeros aleatorios
