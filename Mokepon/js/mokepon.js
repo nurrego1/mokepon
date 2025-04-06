@@ -34,9 +34,36 @@ function seleccionarMascotaJugador() {
         alert("Selecciona una mascota");
     }
 
+    seleccionarMascotaEnemigo()
 }
 
-       
+//Funcion seleccionar mascota enemigo
+function seleccionarMascotaEnemigo() {
+    let enemigoAleatorio = aleatorio(1, 6);
+    let spanMascotaEnemigo = document.getElementById("mascota-enemigo");
+
+    if (enemigoAleatorio == 1) {
+        spanMascotaEnemigo.innerHTML = "Hipodoge";
+    } else if (enemigoAleatorio == 2) {
+        spanMascotaEnemigo.innerHTML = "Capipepo";
+    } else if (enemigoAleatorio == 3) {
+        spanMascotaEnemigo.innerHTML ="Ratigueya";
+    } else if (enemigoAleatorio == 4) {
+        spanMascotaEnemigo.innerHTML = "Langostelvis";
+    } else if (enemigoAleatorio == 5) {
+        spanMascotaEnemigo.innerHTML = "Tucapalma"; 
+    } else if(enemigoAleatorio == 6) {
+        spanMascotaEnemigo.innerHTML ="Pydos";
+    } else {
+        alert("Selecciona una mascota");
+    }
+
+}
+
+//funcion generadora de numeros aleatorios
+function aleatorio(min, max) {
+    return Math.floor(Math.random() * ( max - min + 1 ) + min);
+ }     
 
 //Event listener de carga del HTML
 window.addEventListener("load", iniciarJuego) //Ejecuta la funcion iniciarJuego una vez se ha cargado TODO el HTML
