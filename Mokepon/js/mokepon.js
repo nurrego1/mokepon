@@ -1,6 +1,7 @@
 //Variables globales
 let ataqueJugador;
 let ataqueEnemigo;
+let resultado;
 let vidasJugador = 3;        
 let vidasEnemigo = 3;
 
@@ -116,6 +117,33 @@ function ataqueAleatorioEnemigo() {
         ataqueEnemigo = "AIRE";
     }
     console.log(ataqueEnemigo);
+    combate();
+}
+
+//Funcion combate
+function combate() {
+    // fuego le gana a aire 
+    // agua le gana a fuego 
+    // tierra le gana a agua
+    // aire le gana a tierra   
+
+    if (ataqueJugador == ataqueEnemigo) {
+        resultado = "EMPATE";
+    } else if ((ataqueJugador == "FUEGO" && ataqueEnemigo == "AIRE") || (ataqueJugador == "AGUA" && ataqueEnemigo == "FUEGO") || (ataqueJugador == "TIERRA" && ataqueEnemigo == "AGUA") || (ataqueJugador == "AIRE" && ataqueEnemigo == "TIERRA")) {
+        resultado = "GANASTE!!! 🥳🎉🎊";      
+    }else {
+        resultado = "PERDISTE 😥😥😥";
+    }
+    crearMensaje();   
+}
+
+//funcion para mensaje de combate
+function crearMensaje() {
+    let sectionMensajes = document.getElementById("mensajes");
+
+    let parrafo = document.createElement("p");
+    parrafo.innerHTML = "Tu mascota atacó con " + ataqueJugador + " y la mascota del enemigo atacó con " + ataqueEnemigo + " - " + resultado;
+    sectionMensajes.appendChild(parrafo);
 }
 
 //funcion generadora de numeros aleatorios
