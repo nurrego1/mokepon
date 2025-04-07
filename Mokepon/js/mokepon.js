@@ -141,8 +141,19 @@ function combate() {
         spanVidasJugador.innerHTML = vidasJugador;
         resultado = "PERDISTE 😥😥😥";
     }
-    crearMensaje();   
+    crearMensaje(); 
+    revisarVidas();
 }
+
+//Funcion revisar vidas
+function revisarVidas() {
+    if (vidasEnemigo == 0) {
+        crearMensajeFinal("FELICITACIONES GANASTE 🥳🎉🎊");
+    } else if (vidasJugador == 0) {
+        crearMensajeFinal("Lo siento, PERDISTE 😥😥😥");
+    }
+}
+
 
 //funcion para mensaje de combate
 function crearMensaje() {
@@ -152,6 +163,15 @@ function crearMensaje() {
     parrafo.innerHTML = "Tu mascota atacó con " + ataqueJugador + " y la mascota del enemigo atacó con " + ataqueEnemigo + " - " + resultado;
     sectionMensajes.appendChild(parrafo);
 }
+
+function crearMensajeFinal(resultadoFinal) {
+    let sectionAtaque = document.getElementById("seleccionar-ataque");
+
+    let parrafo2 = document.createElement("p");
+    parrafo2.innerHTML = resultadoFinal;
+    sectionAtaque.appendChild(parrafo2);
+}
+
 
 //funcion generadora de numeros aleatorios
 function aleatorio(min, max) {
