@@ -2,7 +2,7 @@
 let ataqueJugador;
 let ataqueEnemigo;
 let resultado;
-let vidasJugador = 3;        
+let vidasJugador = 3;
 let vidasEnemigo = 3;
 
 function iniciarJuego(){
@@ -122,6 +122,9 @@ function ataqueAleatorioEnemigo() {
 
 //Funcion combate
 function combate() {
+    let spanVidasJugador = document.getElementById("vidas-jugador");
+    let spanVidasEnemigo = document.getElementById("vidas-enemigo");
+
     // fuego le gana a aire 
     // agua le gana a fuego 
     // tierra le gana a agua
@@ -130,8 +133,12 @@ function combate() {
     if (ataqueJugador == ataqueEnemigo) {
         resultado = "EMPATE";
     } else if ((ataqueJugador == "FUEGO" && ataqueEnemigo == "AIRE") || (ataqueJugador == "AGUA" && ataqueEnemigo == "FUEGO") || (ataqueJugador == "TIERRA" && ataqueEnemigo == "AGUA") || (ataqueJugador == "AIRE" && ataqueEnemigo == "TIERRA")) {
+        vidasEnemigo--; //Esto es lo mismo que vidasEnemigo = vidasEnemigo - 1  
+        spanVidasEnemigo.innerHTML = vidasEnemigo;
         resultado = "GANASTE!!! 🥳🎉🎊";      
     }else {
+        vidasJugador = vidasJugador - 1;
+        spanVidasJugador.innerHTML = vidasJugador;
         resultado = "PERDISTE 😥😥😥";
     }
     crearMensaje();   
