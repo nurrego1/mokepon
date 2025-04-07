@@ -12,6 +12,7 @@ function iniciarJuego(){
     let botonAgua = document.getElementById("boton-agua");
     let botonTierra = document.getElementById("boton-tierra");
     let botonAire = document.getElementById("boton-aire");
+    let botonReiniciar = document.getElementById("boton-reiniciar");
     
     
     //Event listeners
@@ -20,6 +21,7 @@ function iniciarJuego(){
     botonAgua.addEventListener("click", ataqueAgua);
     botonTierra.addEventListener("click", ataqueTierra);
     botonAire.addEventListener("click", ataqueAire)
+    botonReiniciar.addEventListener("click", reiniciarJuego);
 }
 
 //Funcion seleccionar Mascota
@@ -165,11 +167,23 @@ function crearMensaje() {
 }
 
 function crearMensajeFinal(resultadoFinal) {
+    //Variables
+    let botonFuego = document.getElementById("boton-fuego");  
+    let botonAgua = document.getElementById("boton-agua");
+    let botonTierra = document.getElementById("boton-tierra");
+    let botonAire = document.getElementById("boton-aire");
     let sectionAtaque = document.getElementById("seleccionar-ataque");
 
+    //mensaje final
     let parrafo2 = document.createElement("p");
     parrafo2.innerHTML = resultadoFinal;
     sectionAtaque.appendChild(parrafo2);
+        
+    //desactivar botones
+    botonFuego.disabled = true;
+    botonAgua.disabled = true;
+    botonTierra.disabled = true;
+    botonAire.disabled = true;
 }
 
 
@@ -177,6 +191,11 @@ function crearMensajeFinal(resultadoFinal) {
 function aleatorio(min, max) {
     return Math.floor(Math.random() * ( max - min + 1 ) + min);
  }     
+
+//Funcion reiniciar juego
+function reiniciarJuego() {
+    location.reload();
+}
 
 //Event listener de carga del HTML
 window.addEventListener("load", iniciarJuego) //Ejecuta la funcion iniciarJuego una vez se ha cargado TODO el HTML
