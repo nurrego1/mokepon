@@ -6,6 +6,12 @@ let vidasJugador = 3;
 let vidasEnemigo = 3;
 
 function iniciarJuego(){
+    //ocular elementos
+    let sectionSeleccionarAtaque = document.getElementById("seleccionar-ataque");    
+    sectionSeleccionarAtaque.style.display = "none";
+    let btnReiniciar = document.getElementById("boton-reiniciar");
+    btnReiniciar.style.display = "none";
+
     //Variables
     let botonMascota = document.getElementById("boton-mascota");
     let botonFuego = document.getElementById("boton-fuego");  
@@ -15,6 +21,7 @@ function iniciarJuego(){
     let botonReiniciar = document.getElementById("boton-reiniciar");
     
     
+    
     //Event listeners
     botonMascota.addEventListener("click",seleccionarMascotaJugador); //El primer elemento es el evento que va a escuchar, y el segundo es la accion o funcion que se va a ejecutar
     botonFuego.addEventListener("click", ataqueFuego);
@@ -22,10 +29,13 @@ function iniciarJuego(){
     botonTierra.addEventListener("click", ataqueTierra);
     botonAire.addEventListener("click", ataqueAire)
     botonReiniciar.addEventListener("click", reiniciarJuego);
+
 }
 
 //Funcion seleccionar Mascota
 function seleccionarMascotaJugador() {
+    let sectionSeleccionarAtaque = document.getElementById("seleccionar-ataque");
+    let sectionSeleccionarMascota = document.getElementById("seleccionar-mascota");
     let inputHipodoge = document.getElementById("hipodoge");
     let inputCapipepo = document.getElementById("capipepo");
     let inputRatigueya = document.getElementById("ratigueya");
@@ -33,7 +43,12 @@ function seleccionarMascotaJugador() {
     let inputTucapalma = document.getElementById("tucapalma");
     let inputPydos = document.getElementById("pydos");
     let spanMascotaJugador = document.getElementById("mascota-jugador");
+    
+    //mostrar/ocualtar secciones de pagina
+    sectionSeleccionarAtaque.style.display = "block";
+    sectionSeleccionarMascota.style.display = "none";
 
+    //mostrar mascota en pantalla
     if (inputHipodoge.checked) {
         spanMascotaJugador.innerHTML = "Hipodoge";
     } else if (inputCapipepo.checked) {
@@ -173,6 +188,7 @@ function crearMensajeFinal(resultadoFinal) {
     let botonTierra = document.getElementById("boton-tierra");
     let botonAire = document.getElementById("boton-aire");
     let sectionAtaque = document.getElementById("seleccionar-ataque");
+    let btnReiniciar = document.getElementById("boton-reiniciar");
 
     //mensaje final
     let parrafo2 = document.createElement("p");
@@ -184,6 +200,9 @@ function crearMensajeFinal(resultadoFinal) {
     botonAgua.disabled = true;
     botonTierra.disabled = true;
     botonAire.disabled = true;
+
+    //mostrar el boton de reiniciar
+    btnReiniciar.style.display = "block";
 }
 
 
