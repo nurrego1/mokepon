@@ -45,7 +45,7 @@ function seleccionarMascotaJugador() {
     let spanMascotaJugador = document.getElementById("mascota-jugador");
     
     //mostrar/ocualtar secciones de pagina
-    sectionSeleccionarAtaque.style.display = "block";
+    sectionSeleccionarAtaque.style.display = "Flex";
     sectionSeleccionarMascota.style.display = "none";
 
     //mostrar mascota en pantalla

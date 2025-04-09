@@ -121,3 +121,27 @@ button {
     margin: 0 10px;
     cursor: pointer;
 }
+
+
+/* Revisar porque no funciona!!!! el cambar el color de bondo de la seccion cuando se selecciona la mascota */
+.tarjeta-mascota label:checked {
+    background-color: #B5A8D5;
+}
+
+#seleccionar-ataque {
+    /* display: flex; */ /*se puede quitar porque lo toma del javascript */
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+} 
+
+.boton-ataque {
+    background-color: rgba(181, 168, 213, 0.2);
+    padding: 10px;
+    border-radius: 25px;
+    border-color: transparent;
+    width: 120px;
+    height: 50px;
+    margin: 0 10px;
+    cursor: pointer;
+}
