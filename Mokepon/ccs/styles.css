@@ -142,6 +142,57 @@ button {
     border-color: transparent;
     width: 120px;
     height: 50px;
-    margin: 0 10px;
+    margin: 0 10px 30px;
     cursor: pointer;
+}
+
+.boton-ataque:hover {
+    background-color: rgba(181, 168, 213, 0.5);
+}
+
+
+
+#mensajes {
+    margin-bottom: 10px;
+    padding: 20px;
+    font-size: 32px;
+    color: whitesmoke;
+    text-align: center;
+}
+
+#boton-reiniciar {
+    margin-bottom: 30px;
+}
+
+#zona-ataques {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#ataques {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+
+#zona-vidas {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    gap: 20px;
+}
+
+#img-mascota-jugador{
+    height: 100px;
+}
+
+#img-mascota-enemigo{
+    height: 100px;
 }

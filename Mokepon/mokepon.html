@@ -84,23 +84,38 @@
             <button id="boton-aire" class="boton-ataque">Aire 💨</button>
         </div>
 
-        <div>
-            <!-- Mensajes -->
-            <section id="mensajes">
-            
-            </section>
-
-            <br>
-            
-            <!-- Reiniciar -->
-            <section id="Reiniciar" class="secciones">
-                <button id="boton-reiniciar">Reiniciar</button>
-            </section>
+        <!-- Mensajes -->
+        <div id="mensajes">
+            <p id="mensaje-final">Mucha Suerte!! 🥰</p>
         </div>
+        
+        <!-- Reiniciar -->
+        <button id="boton-reiniciar">Reiniciar</button>
+        
 
-        <div>
-            <p>Tu mascota <span id="mascota-jugador"></span> tiene <span id="vidas-jugador">3</span> vidas</p>
-            <p>La mascota del enemigo <span id="mascota-enemigo"></span> tiene <span id="vidas-enemigo">3</span> vidas</p>
+        <div id="zona-ataques">
+            <div id="zona-vidas">
+                <div id="seccion-mascota-jugador">
+                    <p>Jugador 😎</p>
+                    <p id="mascota-jugador"></p>
+                    <img id ="img-mascota-jugador" src="" alt="">
+                    <span id="vidas-jugador">3</span>
+                </div>
+                
+                <div id="seccion-mascota-enemigo">
+                    <p>Enemigo 😈</p>
+                    <p id="mascota-enemigo"></p>
+                    <img id ="img-mascota-enemigo" src="" alt="">
+                    <span id="vidas-enemigo">3</span>
+                </div>
+            </div>
+            
+            
+            <div id="ataques">
+                <div id="ataques-jugador"></div>
+                <div id="resultado-ataques"></div>
+                <div id="ataques-enemigo"></div>
+            </div>
         </div>
         
     </section>
