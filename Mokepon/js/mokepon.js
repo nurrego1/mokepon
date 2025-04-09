@@ -21,7 +21,9 @@ function iniciarJuego(){
     let botonAire = document.getElementById("boton-aire");
     let botonReiniciar = document.getElementById("boton-reiniciar");
     
-    
+    // Limpiar la selección previa al iniciar el juego
+    document.querySelectorAll('input[name="mascota"]').forEach(input => input.checked = false);
+
     
     //Event listeners
     botonMascota.addEventListener("click",seleccionarMascotaJugador); //El primer elemento es el evento que va a escuchar, y el segundo es la accion o funcion que se va a ejecutar
@@ -47,11 +49,7 @@ function seleccionarMascotaJugador() {
     let imgMascotaJugador = document.getElementById("img-mascota-jugador"); 
     
 
-    //mostrar/ocualtar secciones de pagina
-    sectionSeleccionarAtaque.style.display = "Flex";
-    sectionSeleccionarMascota.style.display = "none";
-
-    //mostrar mascota en pantalla
+    // Validar si hay mascota seleccionada
     if (inputHipodoge.checked) {
         spanMascotaJugador.innerHTML = "Hipodoge";
         imgMascotaJugador.src = "./assets/mokepons_mokepon_hipodoge_attack.png";
@@ -59,17 +57,25 @@ function seleccionarMascotaJugador() {
         spanMascotaJugador.innerHTML = "Capipepo";
         imgMascotaJugador.src = "./assets/mokepons_mokepon_capipepo_attack.png";
     } else if (inputRatigueya.checked) {
-        spanMascotaJugador.innerHTML ="Ratigueya";
+        spanMascotaJugador.innerHTML = "Ratigueya";
         imgMascotaJugador.src = "./assets/mokepons_mokepon_ratigueya_attack.png";
     } else if (inputLangostelvis.checked) {
         spanMascotaJugador.innerHTML = "Langostelvis";
+        imgMascotaJugador.src = "./assets/mokepons_mokepon_langostelvis_attack.png";
     } else if (inputTucapalma.checked) {
-        spanMascotaJugador.innerHTML = "Tucapalma"; 
-    } else if(inputPydos.checked) {
-        spanMascotaJugador.innerHTML ="Pydos";
+        spanMascotaJugador.innerHTML = "Tucapalma";
+        imgMascotaJugador.src = "./assets/mokepons_mokepon_tucapalma_attack.png";
+    } else if (inputPydos.checked) {
+        spanMascotaJugador.innerHTML = "Pydos";
+        imgMascotaJugador.src = "./assets/mokepons_mokepon_pydos_attack.png";
     } else {
         alert("Selecciona una mascota");
+        return; // ⛔ Detener función si no hay selección
     }
+
+    // ✅ Mostrar ataque solo si hay una mascota válida
+    sectionSeleccionarAtaque.style.display = "Flex";
+    sectionSeleccionarMascota.style.display = "none";
 
     seleccionarMascotaEnemigo()
 }
@@ -228,7 +234,7 @@ function aleatorio(min, max) {
 
 //Funcion reiniciar juego
 function reiniciarJuego() {
-    location.reload();
+    window.location.reload();
 }
 
 //Event listener de carga del HTML
