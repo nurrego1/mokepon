@@ -76,12 +76,12 @@ h2 {
     margin-bottom: 30px;
 }
 
-.tarjetas {
+.tarjetas, #btn-ataques {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-bottom: 30px;
+    margin: 30px;
     gap: 15px;
 }
 
@@ -153,7 +153,6 @@ button {
     height: 50px;
     border-radius: 20px;
     box-shadow: 0px 0px 8px 2px rgba(245, 245, 245, 0.75);
-    margin: 0 10px;
     cursor: pointer;
 }
 
@@ -171,7 +170,6 @@ button {
     border-color: transparent;
     width: 120px;
     height: 50px;
-    margin: 0 10px 30px;
     cursor: pointer;
 }
 
@@ -198,28 +196,101 @@ button {
     align-items: center;
 }
 
-#ataques {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-}
-
-
-#zona-vidas {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 30px;
-    gap: 20px;
-}
-
 #img-mascota-jugador{
     height: 100px;
 }
 
 #img-mascota-enemigo{
     height: 100px;
+}
+
+.tittleTag {
+    font-family: "Atma", system-ui;
+    font-weight: 500;
+    font-style: normal;
+    color: white;
+    font-size: 24px;
+}
+
+.nombreMascota {
+    color: white;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.vidas {
+    font-family: "Atma", system-ui;
+    font-weight: 600;
+    font-style: normal;
+    color:#B5A8D5;
+    font-size: 24px;
+}
+
+#zona-ataques {
+    display: grid;
+    grid-template-columns: 1fr 100px 1fr; /* 3 columnas */
+    grid-template-rows: auto auto;       /* 2 filas */
+    gap: 20px;
+    align-items: center;
+    justify-items: center;
+    padding: 20px;
+}
+  
+  /* Fila 1 */
+#seccion-mascota-jugador, #seccion-mascota-enemigo {
+    grid-column: 1;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    background-color: rgba(77, 85, 204, 0.6);
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 8px 2px rgba(245, 245, 245, 0.75);
+}
+  
+#zona-ataques > p {  /* el <p> "VS." */
+    grid-column: 2;
+    grid-row: 1;
+    font-family: "Atma", system-ui;
+    font-weight: 700;
+    font-style: normal;
+    color: white;
+    font-size: 50px;
+    text-shadow: 0px 0px 10px 2px rgba(245, 245, 245, 0.75);
+}
+  
+#seccion-mascota-enemigo {
+    grid-column: 3;
+    grid-row: 1;
+}
+  
+/* Fila 2 */
+#ataques-jugador,#resultado-ataques,#ataques-enemigo {
+    grid-column: 1;
+    grid-row: 2;
+    color: white;
+    font-size:25px;
+    text-align: center;
+}
+
+#resultado-ataques {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+#ataques-enemigo {
+    grid-column: 3;
+    grid-row: 2;
+}
+
+@media (max-width: 360px) {
+    .tarjetas {
+        flex-direction: column;
+    }
+
+    #btn-ataques {
+        flex-direction: column;
+    }
 }

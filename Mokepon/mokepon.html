@@ -53,20 +53,7 @@
                         <p>Ratigueya</p>
                         <img src="./assets/mokepons_mokepon_ratigueya_attack.png" alt="Ratigueya">
                     </label>
-                </div>
-                
-                <!-- Langostelvis -> Agua  -->
-                <!-- <label for="langostelvis">Langostelvis</label>
-                <input type="radio" name="mascota" id="langostelvis">
-                -->
-                <!-- Tucapalma -> aire -->
-                <!-- <label for="tucapalma">Tucapalma</label>
-                <input type="radio" name="mascota" id="tucapalma">
-                -->
-                <!-- Pydos -> Tierra -->
-                <!-- <label for="pydos">Pydos</label>
-                <input type="radio" name="mascota" id="pydos">
-                -->
+                </div>         
             </div>
 
             <button id="boton-mascota">Seleccionar</button>
@@ -78,7 +65,7 @@
     <section id="seleccionar-ataque">
         <h2 class="subtitle">Elige tu ataque:</h2>
 
-        <div>
+        <div id="btn-ataques">
             <button id="boton-fuego" class="boton-ataque">Fuego 🔥</button>
             <button id="boton-agua" class="boton-ataque">Agua 💧</button>
             <button id="boton-tierra" class="boton-ataque">Tierra 🌱</button>
@@ -93,30 +80,27 @@
         <!-- Reiniciar -->
         <button id="boton-reiniciar">Reiniciar</button>
         
-
+        <!-- Zona de registro de ataques -->
         <div id="zona-ataques">
-            <div id="zona-vidas">
-                <div id="seccion-mascota-jugador">
-                    <p>Jugador 😎</p>
-                    <p id="mascota-jugador"></p>
-                    <img id ="img-mascota-jugador" src="" alt="">
-                    <span id="vidas-jugador">3</span>
-                </div>
-                
-                <div id="seccion-mascota-enemigo">
-                    <p>Enemigo 😈</p>
-                    <p id="mascota-enemigo"></p>
-                    <img id ="img-mascota-enemigo" src="" alt="">
-                    <span id="vidas-enemigo">3</span>
-                </div>
+            <div id="seccion-mascota-jugador">
+                <p class="tittleTag">Jugador 😎</p>
+                <img id ="img-mascota-jugador" src="" alt="">
+                <p id="mascota-jugador" class="nombreMascota"></p>
+                <p id="vidas-jugador" class="vidas">3</p>
             </div>
             
-            
-            <div id="ataques">
-                <div id="ataques-jugador"></div>
-                <div id="resultado-ataques"></div>
-                <div id="ataques-enemigo"></div>
+            <p>VS.</p>
+
+            <div id="seccion-mascota-enemigo">
+                <p class="tittleTag">Enemigo 😈</p>
+                <img id ="img-mascota-enemigo" src="" alt="">
+                <p id="mascota-enemigo" class="nombreMascota"></p>
+                <p id="vidas-enemigo" class="vidas">3</p>
             </div>
+            
+            <div id="ataques-jugador"></div>
+            <div id="resultado-ataques"></div>
+            <div id="ataques-enemigo"></div>
         </div>
         
     </section>
