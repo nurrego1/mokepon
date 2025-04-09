@@ -14,66 +14,95 @@
 </head>
 
 <body>
-    <h1 class="title">MOKEPON! 🔥💧🌱💨</h1>
-
+    <section class="title">
+        <h1 class="title">MOKEPON!</h1>
+        <h2>🔥💧🌱💨</h2>
+    </section>
+    
     <!-- Seleccion de mascota -->
     <section id="seleccionar-mascota">
-        <h2>Elige tu mascota:</h2>
+        <h2 class="subtitle">Elige tu mascota:</h2>
         
-        <!-- Mascotas -->
-        <!-- Hipodoge -> Agua -->
-        <label for="hipodoge">Hipodoge</label>
-        <input type="radio" name="mascota" id="hipodoge">
+        <div class="seleccionar-mascota">
+            <!-- Mascotas -->
+
+            <div class="tarjetas">
+                <!-- Hipodoge -> Agua -->
+                <div class="tarjeta-mascota">
+                    <label for="hipodoge">
+                        <p>Hipodoge</p>
+                        <img src="./assets/mokepons_mokepon_hipodoge_attack.png" alt="Hipodoge">
+                    </label>
+                    <input type="radio" name="mascota" id="hipodoge">
+                </div>
+
+                <!-- Capipepo -> Tierra -->
+                <div class="tarjeta-mascota">
+                    <label for="capipepo">
+                        <p>Capipepo</p>
+                        <img src="./assets/mokepons_mokepon_capipepo_attack.png" alt="Capipepo">
+                    </label>
+                    <input type="radio" name="mascota" id="capipepo">
+                </div>
+                
+                <!-- Ratigueya -> Fuego -->
+                <div class="tarjeta-mascota">
+                    <label for="ratigueya">
+                        <p>Ratigueya</p>
+                        <img src="./assets/mokepons_mokepon_ratigueya_attack.png" alt="Ratigueya">
+                    </label>
+                <input type="radio" name="mascota" id="ratigueya">
+                </div>
+                
+                <!-- Langostelvis -> Agua  -->
+                <!-- <label for="langostelvis">Langostelvis</label>
+                <input type="radio" name="mascota" id="langostelvis">
+                -->
+                <!-- Tucapalma -> aire -->
+                <!-- <label for="tucapalma">Tucapalma</label>
+                <input type="radio" name="mascota" id="tucapalma">
+                -->
+                <!-- Pydos -> Tierra -->
+                <!-- <label for="pydos">Pydos</label>
+                <input type="radio" name="mascota" id="pydos">
+                -->
+            </div>
+
+            <button id="boton-mascota">Seleccionar</button>
+        </div>
         
-        <!-- Capipepo -> Tierra -->
-        <label for="capipepo">Capipepo</label>
-        <input type="radio" name="mascota" id="capipepo">
-        
-        <!-- Ratigueya -> Fuego -->
-        <label for="ratigueya">Ratigueya</label>
-        <input type="radio" name="mascota" id="ratigueya">
-        
-        <!-- Langostelvis -> Agua y Fuego -->
-        <label for="langostelvis">Langostelvis</label>
-        <input type="radio" name="mascota" id="langostelvis">
-        
-        <!-- Tucapalma -> Agua y Tierra -->
-        <label for="tucapalma">Tucapalma</label>
-        <input type="radio" name="mascota" id="tucapalma">
-        
-        <!-- Pydos -> Tierra y Fuego -->
-        <label for="pydos">Pydos</label>
-        <input type="radio" name="mascota" id="pydos">
-        
-        <button id="boton-mascota">Seleccionar</button>
     </section>
 
     <!-- Seleccion de ataque -->
     <section id="seleccionar-ataque">
-        <h2>Elige tu ataque:</h2>
-        <p>Tu mascota <span id="mascota-jugador"></span> tiene <span id="vidas-jugador">3</span> vidas</p>
-        <p>La mascota del enemigo <span id="mascota-enemigo"></span> tiene <span id="vidas-enemigo">3</span> vidas</p>
+        <h2 class="subtitle">Elige tu ataque:</h2>
+
         <div>
             <button id="boton-fuego">Fuego 🔥</button>
             <button id="boton-agua">Agua 💧</button>
             <button id="boton-tierra">Tierra 🌱</button>
             <button id="boton-aire">Aire 💨</button>
-            <!-- hay que activar el atributo disabled para bloquear mas ataques-->
         </div>
-    </section>
 
-    <!-- Mensajes -->
-    <section id="mensajes">
-      
-    </section>
+        <div>
+            <!-- Mensajes -->
+            <section id="mensajes">
+            
+            </section>
 
-    <br>
-    
-    <!-- Reiniciar -->
-    <section id="Reiniciar">
-        <button id="boton-reiniciar">Reiniciar</button>
-    </section>
+            <br>
+            
+            <!-- Reiniciar -->
+            <section id="Reiniciar" class="secciones">
+                <button id="boton-reiniciar">Reiniciar</button>
+            </section>
+        </div>
 
-    
+        <div>
+            <p>Tu mascota <span id="mascota-jugador"></span> tiene <span id="vidas-jugador">3</span> vidas</p>
+            <p>La mascota del enemigo <span id="mascota-enemigo"></span> tiene <span id="vidas-enemigo">3</span> vidas</p>
+        </div>
+        
+    </section>
 </body>
 </html>

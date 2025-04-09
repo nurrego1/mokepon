@@ -1,4 +1,123 @@
-.title {
-    color: hotpink; 
+/* Google fonts */
+/* titles */
+@import url('https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&family=Poiret+One&family=Shadows+Into+Light+Two&display=swap');
+
+* {
+    /* reseting default styles */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    /* stablishing base styles for all elements */
+    /* font-family: "Shadows Into Light Two", cursive;
+    font-weight: 400;
+    font-style: normal; */
+    font-family: "Poiret One", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+
 }
 
+body {
+    background-color: #211C84;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    gap: 10px;
+}
+
+.seleccionar-mascota {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    font-family: "Atma", system-ui;
+    font-weight: 700;
+    font-style: normal;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.subtitle {
+    font-family: "Atma", system-ui;
+    font-weight: 700;
+    font-style: normal;
+    align-items: flex-start;
+}
+
+h1 {
+    color: white;
+    height: 60px;
+    font-size: 60px;
+    margin-bottom: 30px;
+}
+
+h2 {
+    color: whitesmoke;
+    height: 50px;
+    font-size: 40px;
+    margin-bottom: 30px;
+}
+
+label {
+    color: whitesmoke;
+    height: 50px;
+    font-size: 36px;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.tarjeta-mascota img {
+    height: 120px;
+    margin-top: 10px;
+}
+
+input {
+    display: none;
+}
+
+button {
+    background-color: transparent;
+    border: 0px;
+    color: whitesmoke;
+    font-size: 20px;
+    width: 150px;
+    height: 50px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 8px 2px rgba(245, 245, 245, 0.75);
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.tarjetas {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    gap: 15px;
+}
+
+.tarjeta-mascota {
+    background-color: #4D55CC;
+    width: 200px;
+    height: 200px;
+    padding: 10px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content:flex-start;
+    align-items: center;
+    margin: 0 10px;
+    cursor: pointer;
+}
