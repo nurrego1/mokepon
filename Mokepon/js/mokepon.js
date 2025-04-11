@@ -27,6 +27,7 @@ let opcionDeMokepones;
 let inputHipodoge;
 let inputCapipepo;
 let inputRatigueya;
+let mascotaJugador; //para guardar el nombre de la mascota del jugador y usarlo para buscar y extraer sus ataques
 let resultado;
 let resultado2;
 let vidasJugador = 3;
@@ -42,7 +43,7 @@ class Mokepon {
     }
 }
 
-//Objetos
+//Objetos mascotas
 let hipodoge = new Mokepon("Hipodoge", "./assets/mokepons_mokepon_hipodoge_attack.png", 5);
 let capipepo = new Mokepon("Capipepo", "./assets/mokepons_mokepon_capipepo_attack.png", 5);
 let ratigueya = new Mokepon("Ratigueya", "./assets/mokepons_mokepon_ratigueya_attack.png", 5);
@@ -121,12 +122,15 @@ function seleccionarMascotaJugador() {
     if (inputHipodoge.checked) {
         spanMascotaJugador.innerHTML = inputHipodoge.id;
         imgMascotaJugador.src = hipodoge.foto ;
+        mascotaJugador = inputHipodoge.id
     } else if (inputCapipepo.checked) {
         spanMascotaJugador.innerHTML = inputCapipepo.id;
         imgMascotaJugador.src = capipepo.foto;
+        mascotaJugador = inputCapipepo.id
     } else if (inputRatigueya.checked) {
         spanMascotaJugador.innerHTML = inputRatigueya.id;
         imgMascotaJugador.src = ratigueya.foto;
+        mascotaJugador = inputRatigueya.id
     } else {
         alert("Selecciona una mascota");
         return; // ⛔ Detener función si no hay selección
@@ -136,7 +140,19 @@ function seleccionarMascotaJugador() {
     sectionSeleccionarAtaque.style.display = "Flex";
     sectionSeleccionarMascota.style.display = "none";
 
+    extraerAtaques(mascotaJugador);
     seleccionarMascotaEnemigo()
+}
+
+//funcion extraer ataques
+function extraerAtaques(mascotaJugador) {
+    let ataquesMokepon = mokepones.find((mokepon) => mokepon.id === mascotaJugador);
+    console.log(ataquesMokepon.ataques);
+    ataquesMokepon.ataques.forEach((ataque) => {
+        ataquesJugador.innerHTML += `
+            <button id=${ataque.id} class="boton-ataque BAtaque">${ataque.nombre}</button>
+        `
+    })
 }
 
 //Funcion seleccionar mascota enemigo
