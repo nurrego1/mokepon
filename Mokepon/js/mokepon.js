@@ -119,14 +119,14 @@ function iniciarJuego(){
 function seleccionarMascotaJugador() {
     // Validar si hay mascota seleccionada
     if (inputHipodoge.checked) {
-        spanMascotaJugador.innerHTML = "Hipodoge";
-        imgMascotaJugador.src = "./assets/mokepons_mokepon_hipodoge_attack.png";
+        spanMascotaJugador.innerHTML = inputHipodoge.id;
+        imgMascotaJugador.src = hipodoge.foto ;
     } else if (inputCapipepo.checked) {
-        spanMascotaJugador.innerHTML = "Capipepo";
-        imgMascotaJugador.src = "./assets/mokepons_mokepon_capipepo_attack.png";
+        spanMascotaJugador.innerHTML = inputCapipepo.id;
+        imgMascotaJugador.src = capipepo.foto;
     } else if (inputRatigueya.checked) {
-        spanMascotaJugador.innerHTML = "Ratigueya";
-        imgMascotaJugador.src = "./assets/mokepons_mokepon_ratigueya_attack.png";
+        spanMascotaJugador.innerHTML = inputRatigueya.id;
+        imgMascotaJugador.src = ratigueya.foto;
     } else {
         alert("Selecciona una mascota");
         return; // ⛔ Detener función si no hay selección
@@ -141,20 +141,10 @@ function seleccionarMascotaJugador() {
 
 //Funcion seleccionar mascota enemigo
 function seleccionarMascotaEnemigo() {
-    let enemigoAleatorio = aleatorio(1, 3);
+    let enemigoAleatorio = aleatorio(0, mokepones.length-1);
 
-    if (enemigoAleatorio == 1) {
-        spanMascotaEnemigo.innerHTML = "Hipodoge";
-        imgMascotaEnemigo.src = "./assets/mokepons_mokepon_hipodoge_attack.png";
-    } else if (enemigoAleatorio == 2) {
-        spanMascotaEnemigo.innerHTML = "Capipepo";
-        imgMascotaEnemigo.src = "./assets/mokepons_mokepon_capipepo_attack.png";
-    } else if (enemigoAleatorio == 3) {
-        spanMascotaEnemigo.innerHTML ="Ratigueya";
-        imgMascotaEnemigo.src = "./assets/mokepons_mokepon_ratigueya_attack.png";
-    } else {
-        alert("Selecciona una mascota");
-    }
+    spanMascotaEnemigo.innerHTML = mokepones[enemigoAleatorio].nombre;
+    imgMascotaEnemigo.src = mokepones[enemigoAleatorio].foto;
 
 }
 
