@@ -22,6 +22,8 @@ const ataquesEnemigo = document.getElementById("ataques-enemigo");
 const resultadoAtaques = document.getElementById("resultado-ataques");
 const mensajes = document.getElementById("mensaje-final");
 
+
+let mokepones = [];
 let ataqueJugador;
 let ataqueEnemigo;
 let resultado;
@@ -35,8 +37,6 @@ class Mokepon {
         this.nombre = nombre;
         this.foto = foto;
         this.vida = vida;
-        //this.ataques = []; //Arreglo de ataques
-
     }
 }
 
@@ -45,7 +45,10 @@ let hipodoge = new Mokepon("Hipodoge", "./assets/mokepons_mokepon_hipodoge_attac
 let capipepo = new Mokepon("Capipepo", "./assets/mokepons_mokepon_capipepo_attack.png", 5);
 let ratigueya = new Mokepon("Ratigueya", "./assets/mokepons_mokepon_ratigueya_attack.png", 5);
 
-//let mokepones = [hipodoge, capipepo, ratigueya];
+//push para añadir los mokepones
+mokepones.push(hipodoge, capipepo, ratigueya); 
+
+console.log(mokepones);
 
 function iniciarJuego(){
     //ocular elementos
