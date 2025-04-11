@@ -146,9 +146,15 @@ function seleccionarMascotaJugador() {
 
 //funcion extraer ataques
 function extraerAtaques(mascotaJugador) {
-    let ataquesMokepon = mokepones.find((mokepon) => mokepon.id === mascotaJugador);
-    console.log(ataquesMokepon.ataques);
-    ataquesMokepon.ataques.forEach((ataque) => {
+    let ataquesMokepon 
+    //la siguiente funcion hace lo mismo que un forEach
+    for (let i = 0; i < mokepones.length; i++) {
+        if (mascotaJugador === mokepones[i].nombre) {
+            ataquesMokepon = mokepones[i].ataques;
+        }
+    }
+    console.log(ataquesMokepon);
+    ataquesMokepon.forEach((ataque) => {
         ataquesJugador.innerHTML += `
             <button id=${ataque.id} class="boton-ataque BAtaque">${ataque.nombre}</button>
         `
