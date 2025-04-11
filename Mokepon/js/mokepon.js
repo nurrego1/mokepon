@@ -8,9 +8,6 @@ const botonTierra = document.getElementById("boton-tierra");
 const botonAire = document.getElementById("boton-aire");
 const botonReiniciar = document.getElementById("boton-reiniciar");
 const sectionSeleccionarMascota = document.getElementById("seleccionar-mascota");
-const inputHipodoge = document.getElementById("hipodoge");
-const inputCapipepo = document.getElementById("capipepo");
-const inputRatigueya = document.getElementById("ratigueya");
 const spanMascotaJugador = document.getElementById("mascota-jugador");
 const imgMascotaJugador = document.getElementById("img-mascota-jugador"); 
 const spanMascotaEnemigo = document.getElementById("mascota-enemigo");
@@ -27,6 +24,9 @@ let mokepones = [];
 let ataqueJugador;
 let ataqueEnemigo;
 let opcionDeMokepones;
+let inputHipodoge;
+let inputCapipepo;
+let inputRatigueya;
 let resultado;
 let resultado2;
 let vidasJugador = 3;
@@ -95,6 +95,11 @@ function iniciarJuego(){
         `
         //Para que se muestre en el HTML de todas las mascotas se debe poner el + antes del igual en la siguiente linea
         contenedorTarjetas.innerHTML += opcionDeMokepones
+
+        //aqui ya los elementos estaran en el HTML y los podemos ligar a la variable
+        inputHipodoge = document.getElementById("Hipodoge");
+        inputCapipepo = document.getElementById("Capipepo");
+        inputRatigueya = document.getElementById("Ratigueya")
     })  
 
     // Limpiar la selección previa al iniciar el juego
