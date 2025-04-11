@@ -290,7 +290,7 @@ button {
         flex-direction: column;
     }
 
-    #btn-ataques {
+    .btn-ataques {
         flex-direction: column;
     }
 }
