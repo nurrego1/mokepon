@@ -21,11 +21,12 @@ const ataquesJugador = document.getElementById("ataques-jugador");
 const ataquesEnemigo = document.getElementById("ataques-enemigo");
 const resultadoAtaques = document.getElementById("resultado-ataques");
 const mensajes = document.getElementById("mensaje-final");
-
+const contenedorTarjetas = document.getElementById("contener-tarjetas");
 
 let mokepones = [];
 let ataqueJugador;
 let ataqueEnemigo;
+let opcionDeMokepones;
 let resultado;
 let resultado2;
 let vidasJugador = 3;
@@ -45,9 +46,6 @@ class Mokepon {
 let hipodoge = new Mokepon("Hipodoge", "./assets/mokepons_mokepon_hipodoge_attack.png", 5);
 let capipepo = new Mokepon("Capipepo", "./assets/mokepons_mokepon_capipepo_attack.png", 5);
 let ratigueya = new Mokepon("Ratigueya", "./assets/mokepons_mokepon_ratigueya_attack.png", 5);
-
-//push para añadir los mokepones
-mokepones.push(hipodoge, capipepo, ratigueya); 
 
 //con el arreglo de ataques asignamos los ataques a cada mokepon, inyectando automaticamente la informacion de los ataques.
 hipodoge.ataques.push(
@@ -74,11 +72,30 @@ ratigueya.ataques.push(
     {nombre: "🌱", id: "boton-tierra"},
 );
 
+//push para añadir los mokepones
+mokepones.push(hipodoge, capipepo, ratigueya); 
 
 function iniciarJuego(){
     //ocular elementos
     sectionSeleccionarAtaque.style.display = "none";
     btnReiniciar.style.display = "none";
+
+    //mokepones
+    //for each es el metodo que nos permite iterar o recorrer cada uno de nuestros objetos dentro del arreglo
+    mokepones.forEach((mokepon) => {
+        //en opcionDeMokepones vamos a crear un template literario, que es una forma de crear un string dinamico, para poder implementar HTML mezclado con variables y se realiza con la comilla invertida ``
+        opcionDeMokepones = `
+            <div class="tarjeta-mascota">
+                <label for=${mokepon.nombre}>
+                    <input type="radio" name="mascota" id=${mokepon.nombre}>
+                    <p>${mokepon.nombre}</p>
+                    <img src=${mokepon.foto} alt=${mokepon.nombre}>
+                </label>
+            </div>
+        `
+        //Para que se muestre en el HTML de todas las mascotas se debe poner el + antes del igual en la siguiente linea
+        contenedorTarjetas.innerHTML += opcionDeMokepones
+    })  
 
     // Limpiar la selección previa al iniciar el juego
     document.querySelectorAll('input[name="mascota"]').forEach(input => input.checked = false);
