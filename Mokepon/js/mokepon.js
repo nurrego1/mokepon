@@ -18,7 +18,7 @@ const contenedorTarjetas = document.getElementById("contener-tarjetas");
 const contenedorAtaques = document.getElementById("contenedor-ataques");
 
 let mokepones = [];
-let ataqueJugador;
+let ataqueJugador = [];
 let ataqueEnemigo;
 let opcionDeMokepones;
 let inputHipodoge;
@@ -30,10 +30,11 @@ let botonFuego;
 let botonAgua;
 let botonTierra;
 let botonAire;
+let botones = [];
 let resultado;
 let resultado2;
-let vidasJugador = 3;
-let vidasEnemigo = 3;
+let vidasJugador = 10;
+let vidasEnemigo = 10;
  
 //Clase para crear un Mokepon
 class Mokepon {
@@ -46,9 +47,9 @@ class Mokepon {
 }
 
 //Objetos mascotas
-let hipodoge = new Mokepon("Hipodoge", "./assets/mokepons_mokepon_hipodoge_attack.png", 5);
-let capipepo = new Mokepon("Capipepo", "./assets/mokepons_mokepon_capipepo_attack.png", 5);
-let ratigueya = new Mokepon("Ratigueya", "./assets/mokepons_mokepon_ratigueya_attack.png", 5);
+let hipodoge = new Mokepon("Hipodoge", "./assets/mokepons_mokepon_hipodoge_attack.png", 6);
+let capipepo = new Mokepon("Capipepo", "./assets/mokepons_mokepon_capipepo_attack.png", 6);
+let ratigueya = new Mokepon("Ratigueya", "./assets/mokepons_mokepon_ratigueya_attack.png", 6);
 
 //con el arreglo de ataques asignamos los ataques a cada mokepon, inyectando automaticamente la informacion de los ataques.
 hipodoge.ataques.push(
@@ -81,7 +82,7 @@ ratigueya.ataques.push(
 //push para añadir los mokepones
 mokepones.push(hipodoge, capipepo, ratigueya); 
 
-function iniciarJuego(){
+function iniciarJuego() {
     //ocular elementos
     sectionSeleccionarAtaque.style.display = "none";
     btnReiniciar.style.display = "none";
@@ -154,7 +155,7 @@ function extraerAtaques(mascotaJugador) {
             ataquesMokepon = mokepones[i].ataques;
         }
     }
-    console.log(ataquesMokepon);
+    
     mostrarAtaques(ataquesMokepon);
 
 }
@@ -162,7 +163,7 @@ function extraerAtaques(mascotaJugador) {
 //funcion mostrar ataques
 function mostrarAtaques(ataquesMokepon) {
     ataquesMokepon.forEach((ataque) => {
-        ataquesJugador.innerHTML += `
+        contenedorAtaques.innerHTML += `
             <button id=${ataque.id} class="boton-ataque BAtaque">${ataque.nombre}</button>
         `
     })
@@ -172,10 +173,40 @@ function mostrarAtaques(ataquesMokepon) {
     botonTierra = document.getElementById("boton-tierra");
     botonAire = document.getElementById("boton-aire");
 
-    botonFuego.addEventListener("click", ataqueFuego);
-    botonAgua.addEventListener("click", ataqueAgua);
-    botonTierra.addEventListener("click", ataqueTierra);
-    botonAire.addEventListener("click", ataqueAire);
+    botones = document.querySelectorAll(".BAtaque");
+}
+
+//Funcion secuencia de ataques para activar todos! los botones de ataque
+function secuenciaAtaque() {
+    botones.forEach((boton) => {
+        boton.addEventListener("click", (e) => {
+            if (e.target.textContent === "🔥") {
+                ataqueJugador.push("FUEGO 🔥");
+                console.log(ataqueJugador);
+                boton.style.background = "#112f58"; 
+                boton.disabled = true;
+                ataqueAleatorioEnemigo()
+            } else if (e.target.textContent === "💧") {
+                ataqueJugador.push("AGUA 💧")    
+                console.log(ataqueJugador);     
+                boton.style.background = "#112f58"; 
+                boton.disabled = true;
+                ataqueAleatorioEnemigo()
+            }  else if (e.target.textContent === "🌱") {
+                ataqueJugador.push("TIERRA 🌱") 
+                console.log(ataqueJugador);
+                boton.style.background = "#112f58";
+                boton.disabled = true; 
+                ataqueAleatorioEnemigo()
+            } else {
+                ataqueJugador.push("AIRE 💨")
+                console.log(ataqueJugador);
+                boton.style.background = "#112f58";
+                boton.disabled = true; 
+                ataqueAleatorioEnemigo()
+            }
+        })
+    })
 }
 
 //Funcion seleccionar mascota enemigo
@@ -185,35 +216,7 @@ function seleccionarMascotaEnemigo() {
     spanMascotaEnemigo.innerHTML = mokepones[enemigoAleatorio].nombre;
     imgMascotaEnemigo.src = mokepones[enemigoAleatorio].foto;
 
-}
-
-//Funcion ataque de Fuego
-function ataqueFuego() {
-    ataqueJugador = "FUEGO 🔥";
-    console.log(ataqueJugador);
-    ataqueAleatorioEnemigo()
-    //combate();
-}
-
-//Funcion ataque de Agua    
-function ataqueAgua() {
-    ataqueJugador = "AGUA 💧";
-    console.log(ataqueJugador);
-    ataqueAleatorioEnemigo()
-}
-
-//Funcion ataque de Tierra    
-function ataqueTierra() {
-    ataqueJugador = "TIERRA 🌱";
-    console.log(ataqueJugador);
-    ataqueAleatorioEnemigo()
-}
-
-//Funcion ataque de Aire    
-function ataqueAire() {
-    ataqueJugador = "AIRE 💨";
-    console.log(ataqueJugador);
-    ataqueAleatorioEnemigo()
+    secuenciaAtaque()
 }
 
 //funcion ataque aleatorio
@@ -229,7 +232,6 @@ function ataqueAleatorioEnemigo() {
     } else if (ataqueAleatorio == 4) {
         ataqueEnemigo = "AIRE 💨";
     }
-    console.log(ataqueEnemigo);
     combate();
 }
 
