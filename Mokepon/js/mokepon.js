@@ -19,13 +19,14 @@ const contenedorAtaques = document.getElementById("contenedor-ataques");
 
 let mokepones = [];
 let ataqueJugador = [];
-let ataqueEnemigo;
+let ataqueEnemigo = [];
 let opcionDeMokepones;
 let inputHipodoge;
 let inputCapipepo;
 let inputRatigueya;
 let mascotaJugador; //para guardar el nombre de la mascota del jugador y usarlo para buscar y extraer sus ataques
 let ataquesMokepon;
+let ataquesMokeponEnemigo;
 let botonFuego;  
 let botonAgua;
 let botonTierra;
@@ -182,29 +183,26 @@ function secuenciaAtaque() {
         boton.addEventListener("click", (e) => {
             if (e.target.textContent === "🔥") {
                 ataqueJugador.push("FUEGO 🔥");
-                console.log(ataqueJugador);
+                //console.log(ataqueJugador);
                 boton.style.background = "#112f58"; 
                 boton.disabled = true;
-                ataqueAleatorioEnemigo()
             } else if (e.target.textContent === "💧") {
                 ataqueJugador.push("AGUA 💧")    
-                console.log(ataqueJugador);     
+                //console.log(ataqueJugador);     
                 boton.style.background = "#112f58"; 
                 boton.disabled = true;
-                ataqueAleatorioEnemigo()
             }  else if (e.target.textContent === "🌱") {
                 ataqueJugador.push("TIERRA 🌱") 
-                console.log(ataqueJugador);
+                //console.log(ataqueJugador);
                 boton.style.background = "#112f58";
-                boton.disabled = true; 
-                ataqueAleatorioEnemigo()
+                boton.disabled = true;
             } else {
                 ataqueJugador.push("AIRE 💨")
-                console.log(ataqueJugador);
+                //console.log(ataqueJugador);
                 boton.style.background = "#112f58";
-                boton.disabled = true; 
-                ataqueAleatorioEnemigo()
+                boton.disabled = true;
             }
+            ataqueAleatorioEnemigo() 
         })
     })
 }
@@ -215,23 +213,28 @@ function seleccionarMascotaEnemigo() {
 
     spanMascotaEnemigo.innerHTML = mokepones[enemigoAleatorio].nombre;
     imgMascotaEnemigo.src = mokepones[enemigoAleatorio].foto;
-
+    ataquesMokeponEnemigo = mokepones[enemigoAleatorio].ataques;
     secuenciaAtaque()
 }
 
 //funcion ataque aleatorio
 function ataqueAleatorioEnemigo() {
-    let ataqueAleatorio = aleatorio(1, 4);
+    let ataqueAleatorio = aleatorio(0, ataquesMokeponEnemigo.length-1);
     
-    if (ataqueAleatorio == 1) {
-        ataqueEnemigo = "FUEGO 🔥";
+    if (ataqueAleatorio == 0 || ataqueAleatorio ==1) {
+        ataqueEnemigo.push("FUEGO 🔥");
+        //console.log(ataqueEnemigo);
+    } else if (ataqueAleatorio == 3 ||ataqueAleatorio == 4) {
+        ataqueEnemigo.push("AGUA 💧");
+        //console.log(ataqueEnemigo);
     } else if (ataqueAleatorio == 2) {
-        ataqueEnemigo = "AGUA 💧";
-    } else if (ataqueAleatorio == 3) {
-        ataqueEnemigo = "TIERRA 🌱";
-    } else if (ataqueAleatorio == 4) {
-        ataqueEnemigo = "AIRE 💨";
+        ataqueEnemigo.push("TIERRA 🌱");
+        //console.log(ataqueEnemigo);
+    } else {
+        ataqueEnemigo.push("AIRE 💨");
+        //console.log(ataqueEnemigo);
     }
+    
     combate();
 }
 
