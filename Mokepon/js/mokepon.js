@@ -58,6 +58,8 @@ class Mokepon {
         this.alto = 50; // height of the character
         this.mapaFoto = new Image();
         this.mapaFoto.src = foto;
+        this.velocidadX = 0;
+        this.velocidadY = 0;
     }
 }
 
@@ -158,7 +160,8 @@ function seleccionarMascotaJugador() {
     sectionSeleccionarMascota.style.display = "none";
     //sectionSeleccionarAtaque.style.display = "Flex";
     sectionVerMapa.style.display = "flex"; 
-    pintarPersonaje(mascotaJugador); 
+    intervalo = setInterval(pintarPersonaje, 50); // 50 milisegundos
+     
 
     extraerAtaques(mascotaJugador);
     seleccionarMascotaEnemigo()
@@ -339,9 +342,11 @@ function aleatorio(min, max) {
 //funcion para pintar mascotas
 function pintarPersonaje() {
     //mascotaJugador
+    capipepo.x = capipepo.x + capipepo.velocidadX;
+    capipepo.y = capipepo.y + capipepo.velocidadY;
     lienzo.clearRect(0, 0, mapa.width, mapa.height); //limpia el lienzo
     lienzo.drawImage(
-        capipepo.imagen,
+        capipepo.mapaFoto,
         capipepo.x, 
         capipepo.y, 
         capipepo.ancho, 
@@ -349,9 +354,29 @@ function pintarPersonaje() {
     );
 }
 
-function moverCapipepo() {
-    capipepo.x = capipepo.x + 5;// mueve capipepo horizontalmente hacia la derecha
+function moverDerecha() {
+    capipepo.velocidadX = 5; 
     pintarPersonaje();
+}
+
+function moverIzquierda() {
+    capipepo.velocidadX = -5;
+    pintarPersonaje();
+}
+
+function moverAbajo() {
+    capipepo.velocidadY = 5;
+    pintarPersonaje();
+}   
+
+function moverArriba() {   
+    capipepo.velocidadY = -5; 
+    pintarPersonaje();
+}
+
+function detenerMovimiento() {
+    capipepo.velocidadX = 0;
+    capipepo.velocidadY = 0;
 }
 
 //Funcion reiniciar juego
