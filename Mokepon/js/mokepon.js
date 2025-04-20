@@ -33,9 +33,13 @@ let botonTierra;
 let botonAire;
 let botones = [];
 let resultado;
-let resultado2;
-let vidasJugador = 10;
-let vidasEnemigo = 10;
+let indexAtaqueJugador;
+let indexAtaqueEnemigo;
+let resultado2 = [];
+let victoriasJugador = 0;
+let victoriasEnemigo = 0;
+let vidasJugador = 6;
+let vidasEnemigo = 6;
  
 //Clase para crear un Mokepon
 class Mokepon {
@@ -183,25 +187,22 @@ function secuenciaAtaque() {
         boton.addEventListener("click", (e) => {
             if (e.target.textContent === "🔥") {
                 ataqueJugador.push("FUEGO 🔥");
-                //console.log(ataqueJugador);
                 boton.style.background = "#112f58"; 
                 boton.disabled = true;
             } else if (e.target.textContent === "💧") {
-                ataqueJugador.push("AGUA 💧")    
-                //console.log(ataqueJugador);     
+                ataqueJugador.push("AGUA 💧");      
                 boton.style.background = "#112f58"; 
                 boton.disabled = true;
             }  else if (e.target.textContent === "🌱") {
-                ataqueJugador.push("TIERRA 🌱") 
-                //console.log(ataqueJugador);
+                ataqueJugador.push("TIERRA 🌱");
                 boton.style.background = "#112f58";
                 boton.disabled = true;
             } else {
-                ataqueJugador.push("AIRE 💨")
-                //console.log(ataqueJugador);
+                ataqueJugador.push("AIRE 💨");
                 boton.style.background = "#112f58";
                 boton.disabled = true;
             }
+            //console.log(ataqueJugador);
             ataqueAleatorioEnemigo() 
         })
     })
@@ -223,19 +224,28 @@ function ataqueAleatorioEnemigo() {
     
     if (ataqueAleatorio == 0 || ataqueAleatorio ==1) {
         ataqueEnemigo.push("FUEGO 🔥");
-        //console.log(ataqueEnemigo);
     } else if (ataqueAleatorio == 3 ||ataqueAleatorio == 4) {
         ataqueEnemigo.push("AGUA 💧");
-        //console.log(ataqueEnemigo);
     } else if (ataqueAleatorio == 2) {
         ataqueEnemigo.push("TIERRA 🌱");
-        //console.log(ataqueEnemigo);
     } else {
         ataqueEnemigo.push("AIRE 💨");
-        //console.log(ataqueEnemigo);
     }
-    
-    combate();
+    //console.log(ataqueEnemigo);
+    iniciarPelea();
+}
+
+//funcion iniciar pelea
+function iniciarPelea() {
+    if (ataqueJugador.length === 6) {
+        combate();
+    }
+}
+
+
+function indexAmbosOponentes(jugador, enemigo) {
+    indexAtaqueJugador = ataqueJugador[jugador];    
+    indexAtaqueEnemigo = ataqueEnemigo[enemigo]; 
 }
 
 //Funcion combate
@@ -245,30 +255,42 @@ function combate() {
     // tierra le gana a agua
     // aire le gana a tierra   
 
-    if (ataqueJugador == ataqueEnemigo) {
-        resultado = "Empate ➖";
-        resultado2 = "➖";
-    } else if ((ataqueJugador == "FUEGO 🔥" && ataqueEnemigo == "AIRE 💨") || (ataqueJugador == "AGUA 💧" && ataqueEnemigo == "FUEGO 🔥") || (ataqueJugador == "TIERRA 🌱" && ataqueEnemigo == "AGUA 💧") || (ataqueJugador == "AIRE 💨" && ataqueEnemigo == "TIERRA 🌱")) {
-        vidasEnemigo--; //Esto es lo mismo que vidasEnemigo = vidasEnemigo - 1  
-        spanVidasEnemigo.innerHTML = vidasEnemigo;
-        resultado = "Ganaste!! 🥳🎉🎊"; 
-        resultado2 = "🎉";     
-    }else {
-        vidasJugador = vidasJugador - 1;
-        spanVidasJugador.innerHTML = vidasJugador;
-        resultado = "Perdiste 😭☠️🪦";
-        resultado2 = "☠️";
+    for (let i = 0; i < ataqueJugador.length; i++) {
+        if (ataqueJugador[i] === ataqueEnemigo[i]) {
+            indexAmbosOponentes(i, i);
+            resultado ="Empate ➖";
+            resultado2 ="➖";
+        } else if ((ataqueJugador[i] === "FUEGO 🔥" && ataqueEnemigo[i] === "AIRE 💨") || (ataqueJugador[i] === "AGUA 💧" && ataqueEnemigo[i] === "FUEGO 🔥") || (ataqueJugador[i] === "TIERRA 🌱" && ataqueEnemigo[i] === "AGUA 💧") || (ataqueJugador[i] === "AIRE 💨" && ataqueEnemigo[i] === "TIERRA 🌱")) {
+            indexAmbosOponentes(i, i);
+            vidasEnemigo--; //Esto es lo mismo que vidasEnemigo = vidasEnemigo - 1 
+            victoriasJugador++; 
+            spanVidasEnemigo.innerHTML = "❤️: " + vidasEnemigo + " 🎖️: " + victoriasEnemigo;
+            spanVidasJugador.innerHTML = "❤️: " + vidasJugador  + " 🎖️: " + victoriasJugador;
+            resultado = "Ganaste!! 🥳🎉🎊"; 
+            resultado2 ="🎉";  
+               
+        } else {
+            indexAmbosOponentes(i, i);
+            vidasJugador = vidasJugador - 1;
+            victoriasEnemigo++;
+            spanVidasEnemigo.innerHTML = "❤️: " + vidasEnemigo + " 🎖️: " + victoriasEnemigo;
+            spanVidasJugador.innerHTML = "❤️: " + vidasJugador  + " 🎖️: " + victoriasJugador;
+            resultado = "Perdiste 😭☠️🪦";
+            resultado2 = "☠️";
+        }
+        crearMensaje();
     }
-    crearMensaje(); 
-    revisarVidas();
+    revisarVictorias();
 }
 
 //Funcion revisar vidas
-function revisarVidas() {
-    if (vidasEnemigo == 0) {
+function revisarVictorias() {
+    if (victoriasJugador > victoriasEnemigo) {
         crearMensajeFinal("FELICITACIONES GANASTE 🥳🎉🎊");
-    } else if (vidasJugador == 0) {
+    } else if (victoriasEnemigo > victoriasJugador) {
         crearMensajeFinal("Lo siento, PERDISTE 😭☠️🪦");
+    } else {
+        crearMensajeFinal("EMPATE ➖");
     }
 }
 
@@ -278,8 +300,8 @@ function crearMensaje() {
     let nuevoAtaqueEnemigo = document.createElement("p");
     let notificacion = document.createElement("p");
 
-    nuevoAtaqueJugador.innerHTML =ataqueJugador;
-    nuevoAtaqueEnemigo.innerHTML = ataqueEnemigo;
+    nuevoAtaqueJugador.innerHTML =indexAtaqueJugador;
+    nuevoAtaqueEnemigo.innerHTML = indexAtaqueEnemigo;
     notificacion.innerHTML = resultado2;
     mensajes.innerHTML = resultado;
 
@@ -292,12 +314,6 @@ function crearMensajeFinal(resultadoFinal) {
     //mensaje final
     mensajes.innerHTML = resultadoFinal;
         
-    //desactivar botones
-    botonFuego.disabled = true;
-    botonAgua.disabled = true;
-    botonTierra.disabled = true;
-    botonAire.disabled = true;
-
     //mostrar el boton de reiniciar
     btnReiniciar.style.display = "block";
 }
