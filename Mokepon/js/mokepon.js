@@ -52,6 +52,12 @@ class Mokepon {
         this.foto = foto;
         this.vida = vida;
         this.ataques = [];
+        this.x = 20; // initial position in X axis
+        this.y = 30; // initial position in Y axis
+        this.ancho = 50; // width of the character
+        this.alto = 50; // height of the character
+        this.mapaFoto = new Image();
+        this.mapaFoto.src = foto;
     }
 }
 
@@ -152,15 +158,7 @@ function seleccionarMascotaJugador() {
     sectionSeleccionarMascota.style.display = "none";
     //sectionSeleccionarAtaque.style.display = "Flex";
     sectionVerMapa.style.display = "flex"; 
-    let imagenDeCapipepo = new Image();
-    imagenDeCapipepo.src = capipepo.foto;
-    lienzo.drawImage(
-        imagenDeCapipepo, 
-        20, 
-        40, 
-        100, 
-        100
-    ); 
+    pintarPersonaje(mascotaJugador); 
 
     extraerAtaques(mascotaJugador);
     seleccionarMascotaEnemigo()
@@ -336,7 +334,25 @@ function crearMensajeFinal(resultadoFinal) {
 //funcion generadora de numeros aleatorios
 function aleatorio(min, max) {
     return Math.floor(Math.random() * ( max - min + 1 ) + min);
- }     
+}    
+
+//funcion para pintar mascotas
+function pintarPersonaje() {
+    //mascotaJugador
+    lienzo.clearRect(0, 0, mapa.width, mapa.height); //limpia el lienzo
+    lienzo.drawImage(
+        capipepo.imagen,
+        capipepo.x, 
+        capipepo.y, 
+        capipepo.ancho, 
+        capipepo.alto
+    );
+}
+
+function moverCapipepo() {
+    capipepo.x = capipepo.x + 5;// mueve capipepo horizontalmente hacia la derecha
+    pintarPersonaje();
+}
 
 //Funcion reiniciar juego
 function reiniciarJuego() {
