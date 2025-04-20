@@ -16,6 +16,8 @@ const resultadoAtaques = document.getElementById("resultado-ataques");
 const mensajes = document.getElementById("mensaje-final");
 const contenedorTarjetas = document.getElementById("contener-tarjetas");
 const contenedorAtaques = document.getElementById("contenedor-ataques");
+const sectionVerMapa = document.getElementById("ver-mapa");
+const mapa = document.getElementById("mapa");
 
 let mokepones = [];
 let ataqueJugador = [];
@@ -40,6 +42,8 @@ let victoriasJugador = 0;
 let victoriasEnemigo = 0;
 let vidasJugador = 6;
 let vidasEnemigo = 6;
+let lienzo = mapa.getContext("2d"); 
+let intervalo;
  
 //Clase para crear un Mokepon
 class Mokepon {
@@ -90,6 +94,7 @@ mokepones.push(hipodoge, capipepo, ratigueya);
 function iniciarJuego() {
     //ocular elementos
     sectionSeleccionarAtaque.style.display = "none";
+    sectionVerMapa.style.display = "none";
     btnReiniciar.style.display = "none";
 
     //mokepones
@@ -144,8 +149,10 @@ function seleccionarMascotaJugador() {
     }
 
     // ✅ Mostrar ataque solo si hay una mascota válida
-    sectionSeleccionarAtaque.style.display = "Flex";
     sectionSeleccionarMascota.style.display = "none";
+    //sectionSeleccionarAtaque.style.display = "Flex";
+    sectionVerMapa.style.display = "flex";  
+    lienzo.fillRect(5,15, 20, 40); //esta funcion lo que hace es crear un rectangulo en el lienzo
 
     extraerAtaques(mascotaJugador);
     seleccionarMascotaEnemigo()

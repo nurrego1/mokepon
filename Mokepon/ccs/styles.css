@@ -286,6 +286,16 @@ button {
     grid-row: 2;
 }
 
+#ver-mapa {
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+}
+
+#mapa { 
+    border: 2px solid white;
+}
+
 @media (max-width: 360px) {
     .tarjetas {
         flex-direction: column;
