@@ -151,8 +151,16 @@ function seleccionarMascotaJugador() {
     // ✅ Mostrar ataque solo si hay una mascota válida
     sectionSeleccionarMascota.style.display = "none";
     //sectionSeleccionarAtaque.style.display = "Flex";
-    sectionVerMapa.style.display = "flex";  
-    lienzo.fillRect(5,15, 20, 40); //esta funcion lo que hace es crear un rectangulo en el lienzo
+    sectionVerMapa.style.display = "flex"; 
+    let imagenDeCapipepo = new Image();
+    imagenDeCapipepo.src = capipepo.foto;
+    lienzo.drawImage(
+        imagenDeCapipepo, 
+        20, 
+        40, 
+        100, 
+        100
+    ); 
 
     extraerAtaques(mascotaJugador);
     seleccionarMascotaEnemigo()
