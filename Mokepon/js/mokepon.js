@@ -98,6 +98,15 @@ hipodoge.ataques.push(
     {nombre: "💨", id: "boton-aire"},
 );
 
+hipodogeEnemigo.ataques.push(
+    {nombre: "💧", id: "boton-agua"},
+    {nombre: "💧", id: "boton-agua"},
+    {nombre: "💧", id: "boton-agua"},
+    {nombre: "🔥", id: "boton-fuego"},
+    {nombre: "🌱", id: "boton-tierra"},
+    {nombre: "💨", id: "boton-aire"},
+);
+
 capipepo.ataques.push(
     {nombre: "🌱", id: "boton-tierra"},
     {nombre: "🌱", id: "boton-tierra"},
@@ -107,7 +116,25 @@ capipepo.ataques.push(
     {nombre: "💨", id: "boton-aire"},
 );
 
+capipepoEnemigo.ataques.push(
+    {nombre: "🌱", id: "boton-tierra"},
+    {nombre: "🌱", id: "boton-tierra"},
+    {nombre: "🌱", id: "boton-tierra"},
+    {nombre: "💧", id: "boton-agua"},
+    {nombre: "🔥", id: "boton-fuego"},
+    {nombre: "💨", id: "boton-aire"},
+);
+
 ratigueya.ataques.push(
+    {nombre: "🔥", id: "boton-fuego"},
+    {nombre: "🔥", id: "boton-fuego"},
+    {nombre: "🔥", id: "boton-fuego"},
+    {nombre: "💧", id: "boton-agua"},
+    {nombre: "🌱", id: "boton-tierra"},
+    {nombre: "💨", id: "boton-aire"},
+);
+
+ratigueyaEnemigo.ataques.push(
     {nombre: "🔥", id: "boton-fuego"},
     {nombre: "🔥", id: "boton-fuego"},
     {nombre: "🔥", id: "boton-fuego"},
@@ -177,13 +204,10 @@ function seleccionarMascotaJugador() {
     }
 
     // ✅ Mostrar ataque solo si hay una mascota válida
+    extraerAtaques(mascotaJugador);
     sectionSeleccionarMascota.style.display = "none";
-    //sectionSeleccionarAtaque.style.display = "Flex";
     sectionVerMapa.style.display = "flex"; 
     iniciarMapa();
-
-    extraerAtaques(mascotaJugador);
-    seleccionarMascotaEnemigo()
 }
 
 //funcion extraer ataques
@@ -237,19 +261,18 @@ function secuenciaAtaque() {
                 boton.style.background = "#112f58";
                 boton.disabled = true;
             }
-            //console.log(ataqueJugador);
-            ataqueAleatorioEnemigo() 
+            console.log(ataqueJugador);
+            ataqueAleatorioEnemigo();
+            clearInterval(intervalo);
         })
     })
 }
 
 //Funcion seleccionar mascota enemigo
-function seleccionarMascotaEnemigo() {
-    let enemigoAleatorio = aleatorio(0, mokepones.length-1);
-
-    spanMascotaEnemigo.innerHTML = mokepones[enemigoAleatorio].nombre;
-    imgMascotaEnemigo.src = mokepones[enemigoAleatorio].foto;
-    ataquesMokeponEnemigo = mokepones[enemigoAleatorio].ataques;
+function seleccionarMascotaEnemigo(enemigo) {
+    spanMascotaEnemigo.innerHTML = enemigo.nombre;
+    imgMascotaEnemigo.src = enemigo.foto;
+    ataquesMokeponEnemigo = enemigo.ataques;
     secuenciaAtaque()
 }
 
@@ -466,7 +489,10 @@ function revisarColision(enemigo) {
     } 
 
     detenerMovimiento();
-    alert("Hay colisón con " + enemigo.nombre);
+    clearInterval(intervalo); //para limpiar el intervalo de pintarCanvas y que la colision se detecte 1 sola vez y no me multiplique los ataques del jugador en el array 
+    sectionSeleccionarAtaque.style.display = "Flex";
+    sectionVerMapa.style.display = "none";
+    seleccionarMascotaEnemigo(enemigo);
 }
 
 //Funcion reiniciar juego
