@@ -50,26 +50,43 @@ mapaBackground.src = "./assets/mokemap.png";
  
 //Clase para crear un Mokepon
 class Mokepon {
-    constructor (nombre, foto, vida) {
+    constructor (nombre, foto, vida,fotoMapa, x = 10, y = 10) { 
         this.nombre = nombre;
         this.foto = foto;
         this.vida = vida;
         this.ataques = [];
-        this.x = 20; // initial position in X axis
-        this.y = 30; // initial position in Y axis
+        this.x = x; // initial position in X axis
+        this.y = y; // initial position in Y axis
         this.ancho = 80; // width of the character
         this.alto = 80; // height of the character
         this.mapaFoto = new Image();
-        this.mapaFoto.src = foto;
+        this.mapaFoto.src = fotoMapa; //Avatars del Mokepon
         this.velocidadX = 0;
         this.velocidadY = 0;
     }
+
+    //This is a mathod of class Mokepon
+    pintarMokepon() {
+        // in here we use this.  because now we are using the attributes of the object that was created inside the class
+        lienzo.drawImage(
+            this.mapaFoto,
+            this.x, 
+            this.y, 
+            this.ancho, 
+            this.alto
+        );
+    }
 }
 
-//Objetos mascotas
-let hipodoge = new Mokepon("Hipodoge", "./assets/mokepons_mokepon_hipodoge_attack.png", 6);
-let capipepo = new Mokepon("Capipepo", "./assets/mokepons_mokepon_capipepo_attack.png", 6);
-let ratigueya = new Mokepon("Ratigueya", "./assets/mokepons_mokepon_ratigueya_attack.png", 6);
+//Objetos mascotas del Jugador
+let hipodoge = new Mokepon("Hipodoge", "./assets/mokepons_mokepon_hipodoge_attack.png", 6, "./assets/hipodoge.png");
+let capipepo = new Mokepon("Capipepo", "./assets/mokepons_mokepon_capipepo_attack.png", 6, "./assets/capipepo.png");
+let ratigueya = new Mokepon("Ratigueya", "./assets/mokepons_mokepon_ratigueya_attack.png", 6, "./assets/ratigueya.png");
+
+//Objetos mascotas del Enemigo
+let hipodogeEnemigo = new Mokepon("Hipodoge", "./assets/mokepons_mokepon_hipodoge_attack.png", 6, "./assets/hipodoge.png", 80, 120);
+let capipepoEnemigo = new Mokepon("Capipepo", "./assets/mokepons_mokepon_capipepo_attack.png", 6, "./assets/capipepo.png", 250, 295);
+let ratigueyaEnemigo = new Mokepon("Ratigueya", "./assets/mokepons_mokepon_ratigueya_attack.png", 6, "./assets/ratigueya.png", 600, 390);
 
 //con el arreglo de ataques asignamos los ataques a cada mokepon, inyectando automaticamente la informacion de los ataques.
 hipodoge.ataques.push(
@@ -354,13 +371,11 @@ function pintarCanvas() {
         mapa.width, 
         mapa.height,
     ) //pinta el fondo del lienzo
-    lienzo.drawImage(
-        mascotaJugadorObjeto.mapaFoto,
-        mascotaJugadorObjeto.x, 
-        mascotaJugadorObjeto.y, 
-        mascotaJugadorObjeto.ancho, 
-        mascotaJugadorObjeto.alto
-    );
+    mascotaJugadorObjeto.pintarMokepon();
+    //mascotaEnemigoObjeto.pintarMokepon();
+    hipodogeEnemigo.pintarMokepon();
+    capipepoEnemigo.pintarMokepon();
+    ratigueyaEnemigo.pintarMokepon();
 }
 
 function moverDerecha() {
