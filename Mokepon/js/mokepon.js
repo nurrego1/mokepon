@@ -504,6 +504,8 @@ function revisarColision(enemigo) {
     clearInterval(intervalo); //para limpiar el intervalo de pintarCanvas y que la colision se detecte 1 sola vez y no me multiplique los ataques del jugador en el array 
     sectionSeleccionarAtaque.style.display = "Flex";
     sectionVerMapa.style.display = "none";
+    window.removeEventListener("keydown", sePresionoUnaTecla);
+    window.removeEventListener("keyup", detenerMovimiento);
     seleccionarMascotaEnemigo(enemigo);
 }
 
