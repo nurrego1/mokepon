@@ -263,7 +263,6 @@ function secuenciaAtaque() {
             }
             console.log(ataqueJugador);
             ataqueAleatorioEnemigo();
-            clearInterval(intervalo);
         })
     })
 }
