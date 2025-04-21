@@ -18,6 +18,7 @@ const contenedorTarjetas = document.getElementById("contener-tarjetas");
 const contenedorAtaques = document.getElementById("contenedor-ataques");
 const sectionVerMapa = document.getElementById("ver-mapa");
 const mapa = document.getElementById("mapa");
+const anchoMaximoDelMapa = 800;
 
 let mokepones = [];
 let ataqueJugador = [];
@@ -47,18 +48,31 @@ let lienzo = mapa.getContext("2d");
 let intervalo;
 let mapaBackground = new Image();
 mapaBackground.src = "./assets/mokemap.png";
- 
+let alturaQueBuscamos;
+let anchoDelMapa = window.innerWidth-30;
+
+if (anchoDelMapa > anchoMaximoDelMapa) {
+    anchoDelMapa = anchoMaximoDelMapa -30;
+    mapa.width = anchoDelMapa;
+    mapa.height = alturaQueBuscamos;
+}
+
+alturaQueBuscamos = anchoDelMapa * 600 / 800;
+
+mapa.width = anchoDelMapa;
+mapa.height = alturaQueBuscamos;
+
 //Clase para crear un Mokepon
 class Mokepon {
-    constructor (nombre, foto, vida,fotoMapa, x = 10, y = 10) { 
+    constructor (nombre, foto, vida,fotoMapa) { 
         this.nombre = nombre;
         this.foto = foto;
         this.vida = vida;
         this.ataques = [];
-        this.x = x; // initial position in X axis
-        this.y = y; // initial position in Y axis
         this.ancho = 60; // width of the character
         this.alto = 60; // height of the character
+        this.x = aleatorio(0, mapa.width - this.ancho); // initial position in X axis
+        this.y = aleatorio(0, mapa.height - this.alto); // initial position in Y axis
         this.mapaFoto = new Image();
         this.mapaFoto.src = fotoMapa; //Avatars del Mokepon
         this.velocidadX = 0;
@@ -84,9 +98,9 @@ let capipepo = new Mokepon("Capipepo", "./assets/mokepons_mokepon_capipepo_attac
 let ratigueya = new Mokepon("Ratigueya", "./assets/mokepons_mokepon_ratigueya_attack.png", 6, "./assets/ratigueya.png");
 
 //Objetos mascotas del Enemigo
-let hipodogeEnemigo = new Mokepon("Hipodoge", "./assets/mokepons_mokepon_hipodoge_attack.png", 6, "./assets/hipodoge.png", 80, 120);
-let capipepoEnemigo = new Mokepon("Capipepo", "./assets/mokepons_mokepon_capipepo_attack.png", 6, "./assets/capipepo.png", 250, 295);
-let ratigueyaEnemigo = new Mokepon("Ratigueya", "./assets/mokepons_mokepon_ratigueya_attack.png", 6, "./assets/ratigueya.png", 600, 390);
+let hipodogeEnemigo = new Mokepon("Hipodoge", "./assets/mokepons_mokepon_hipodoge_attack.png", 6, "./assets/hipodoge.png");
+let capipepoEnemigo = new Mokepon("Capipepo", "./assets/mokepons_mokepon_capipepo_attack.png", 6, "./assets/capipepo.png");
+let ratigueyaEnemigo = new Mokepon("Ratigueya", "./assets/mokepons_mokepon_ratigueya_attack.png", 6, "./assets/ratigueya.png");
 
 //con el arreglo de ataques asignamos los ataques a cada mokepon, inyectando automaticamente la informacion de los ataques.
 hipodoge.ataques.push(
@@ -451,8 +465,6 @@ function sePresionoUnaTecla(event) {
 }
 
 function iniciarMapa() {
-    mapa.width = 800;
-    mapa.height = 600;
     mascotaJugadorObjeto = obtenerObjetosMokepon(mascotaJugador);
     intervalo = setInterval(pintarCanvas, 50); // 50 milisegundos
     window.addEventListener("keydown", sePresionoUnaTecla);

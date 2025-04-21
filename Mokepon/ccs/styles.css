@@ -292,10 +292,6 @@ button {
     justify-content: center;
 }
 
-#mapa { 
-    border: 2px solid white;
-}
-
 @media (max-width: 360px) {
     .tarjetas {
         flex-direction: column;
