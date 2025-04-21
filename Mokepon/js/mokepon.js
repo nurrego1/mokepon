@@ -57,8 +57,8 @@ class Mokepon {
         this.ataques = [];
         this.x = x; // initial position in X axis
         this.y = y; // initial position in Y axis
-        this.ancho = 80; // width of the character
-        this.alto = 80; // height of the character
+        this.ancho = 60; // width of the character
+        this.alto = 60; // height of the character
         this.mapaFoto = new Image();
         this.mapaFoto.src = fotoMapa; //Avatars del Mokepon
         this.velocidadX = 0;
@@ -216,20 +216,20 @@ function extraerAtaques(mascotaJugador) {
     //la siguiente funcion hace lo mismo que un forEach
     for (let i = 0; i < mokepones.length; i++) {
         if (mascotaJugador === mokepones[i].nombre) {
-            ataquesMokepon = mokepones[i].ataques;
+            ataques = mokepones[i].ataques;
         }
     }
     
-    mostrarAtaques(ataquesMokepon);
+    mostrarAtaques(ataques);
 
 }
 
 //funcion mostrar ataques
-function mostrarAtaques(ataquesMokepon) {
-    ataquesMokepon.forEach((ataque) => {
-        contenedorAtaques.innerHTML += `
-            <button id=${ataque.id} class="boton-ataque BAtaque">${ataque.nombre}</button>
-        `
+function mostrarAtaques(ataques) {
+    ataques.forEach((ataque) => {
+        ataquesMokepon = `<button id=${ataque.id} class="boton-ataque BAtaque">${ataque.nombre}</button>`
+        contenedorAtaques.innerHTML += ataquesMokepon 
+        
     })
 
     botonFuego = document.getElementById("boton-fuego");  
@@ -277,6 +277,7 @@ function seleccionarMascotaEnemigo(enemigo) {
 
 //funcion ataque aleatorio
 function ataqueAleatorioEnemigo() {
+    console.log('Ataques enemigo',ataquesMokeponEnemigo);
     let ataqueAleatorio = aleatorio(0, ataquesMokeponEnemigo.length-1);
     
     if (ataqueAleatorio == 0 || ataqueAleatorio ==1) {
