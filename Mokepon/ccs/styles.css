@@ -292,6 +292,28 @@ button {
     justify-content: center;
 }
 
+.div-mover {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.boton-mover {
+    background-color: rgba(181, 168, 213, 0.2);
+    padding: 10px;
+    border-radius: 25px;
+    border-color: transparent;
+    width: 120px;
+    height: 50px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.btn-arriba {
+    margin-top: 25px;
+}
+
 @media (max-width: 360px) {
     .tarjetas {
         flex-direction: column;
@@ -300,4 +322,9 @@ button {
     .btn-ataques {
         flex-direction: column;
     }
+
+    .div-mover {
+        flex-direction: column;
+    }
 }
+
