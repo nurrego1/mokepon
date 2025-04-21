@@ -10,3 +10,14 @@ function extraerAtaques(mascotaJugador) {
         `
     })
 }
+
+function revisarColision(enemigo) {
+    if (
+        mascotaJugadorObjeto.atacar(enemigo) ||
+        enemigo.atacar(mascotaJugadorObjeto)
+    ) {
+        detenerMovimiento();
+        clearInterval(intervalo);
+        combate();
+    }
+}
