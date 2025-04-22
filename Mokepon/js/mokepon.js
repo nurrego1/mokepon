@@ -195,6 +195,24 @@ function iniciarJuego() {
     //Event listeners
     botonMascota.addEventListener("click",seleccionarMascotaJugador); //El primer elemento es el evento que va a escuchar, y el segundo es la accion o funcion que se va a ejecutar
     botonReiniciar.addEventListener("click", reiniciarJuego);
+
+    //Aqui estoy llamando a la funcion unirseAlJuego para unir el banckend con el frontend
+    unirseAlJuego();
+
+}
+
+function unirseAlJuego() {
+    fetch("http://localhost:8080/unirse") //el metodo por defecto es tipo get, pero si queremos  el metodo tipo post hauy que especificarlo asi:  fetch("http://localhost:8080/unirse", {method: "POST"})
+        .then(function (res) {
+            //console.log(res)
+            if (res.ok) {
+                res.text()
+                .then(function (respuesta) {
+                    console.log(respuesta)
+                    //jugadorId = res
+                })
+            }
+        })
 }
 
 //Funcion seleccionar Mascota
