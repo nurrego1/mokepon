@@ -20,6 +20,7 @@ const sectionVerMapa = document.getElementById("ver-mapa");
 const mapa = document.getElementById("mapa");
 const anchoMaximoDelMapa = 800;
 
+let jugadorId = null;
 let mokepones = [];
 let ataqueJugador = [];
 let ataqueEnemigo = [];
@@ -201,15 +202,16 @@ function iniciarJuego() {
 
 }
 
+//Funcion unirse al juego con fetch tipo get
 function unirseAlJuego() {
-    fetch("http://localhost:8080/unirse") //el metodo por defecto es tipo get, pero si queremos  el metodo tipo post hauy que especificarlo asi:  fetch("http://localhost:8080/unirse", {method: "POST"})
+    fetch("http://localhost:8080/unirse") //el metodo por defecto es tipo get, pero si queremos  el metodo tipo post hay que especificarlo asi:  fetch("http://localhost:8080/unirse", {method: "POST"})
         .then(function (res) {
             //console.log(res)
             if (res.ok) {
                 res.text()
                 .then(function (respuesta) {
                     console.log(respuesta)
-                    //jugadorId = res
+                    jugadorId = respuesta
                 })
             }
         })
@@ -235,11 +237,26 @@ function seleccionarMascotaJugador() {
         return; // ⛔ Detener función si no hay selección
     }
 
+    seleccionarMokepon(mascotaJugador)
+
+
     // ✅ Mostrar ataque solo si hay una mascota válida
     extraerAtaques(mascotaJugador);
     sectionSeleccionarMascota.style.display = "none";
     sectionVerMapa.style.display = "flex"; 
     iniciarMapa();
+}
+
+function seleccionarMokepon(mascotaJugador) {
+    fetch(`http://localhost:8080/mokepon/${jugadorId}`, {
+        method: "post",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            mokepon: mascotaJugador
+        })
+    })
 }
 
 //funcion extraer ataques

@@ -5,8 +5,8 @@ const cors = require("cors"); //libreria
 
 const app = express();
 
-app.use(cors());
-app.use(express.json());
+app.use(cors()); //soluciona o desahilita los posibles errores relacionados con CORS
+app.use(express.json()); //habilita la capacidad de recibir peticiones "post" que traigan contenido en formato JSON
 
 //creando lista de jugadores que se van a conectar a la pagina web o servidor.
 
@@ -18,10 +18,21 @@ class Jugador {
     constructor(id) {
         this.id = id;
     }
+
+    asignarMokepon(mokepon) {
+        this.mokepon = mokepon;
+    }
+}
+
+class Mokepon {
+    constructor(nombre) {
+        this.nombre = nombre;
+    }
 }
 
 //ahora vamos a hacer que nuestra pagina en el frontend llame a un servidor en el backend, para que incremente el numero de jugadores o para que se registre ese jugador. y le devuelva su ID.
 
+//peticion get
 app.get("/unirse", (req, res) => { 
     const id = `${Math.random()}` 
 
@@ -36,6 +47,24 @@ app.get("/unirse", (req, res) => {
 
     res.send(id);
 }); 
+
+//Peticion tipo post para el serivicio
+app.post("/mokepon/:jugadorId", (req, res) => {
+    const jugadorId = req.params.jugadorId || "";
+    const nombreMokepon = req.body.mokepon || "";
+    const mokepon = new Mokepon(nombreMokepon);
+
+    const jugadorIndex = jugadores.findIndex((jugador) => jugadorId === jugador.id);
+
+    if (jugadorIndex >= 0) {
+        jugadores[jugadorIndex].asignarMokepon(mokepon);
+    }
+
+    console.log(jugadores)
+    console.log(jugadorId);
+    res.end();
+})
+
 
 app.listen(8080, () => {
     console.log("Servidor escuchando en el puerto 8080");
