@@ -22,6 +22,7 @@ const anchoMaximoDelMapa = 800;
 
 let jugadorId = null;
 let mokepones = [];
+let mokeponesEnemigos = [];
 let ataqueJugador = [];
 let ataqueEnemigo = [];
 let opcionDeMokepones;
@@ -425,10 +426,12 @@ function pintarCanvas() {
     // funcion para enviar posicion al servidor
     enviarPosicion(mascotaJugadorObjeto.x, mascotaJugadorObjeto.y);
 
-    //mascotaEnemigoObjeto.pintarMokepon();
-    hipodogeEnemigo.pintarMokepon();
-    capipepoEnemigo.pintarMokepon();
-    ratigueyaEnemigo.pintarMokepon();
+    //Ahora pintamos los mokepones enemigos
+    mokeponesEnemigos.forEach( function(mokepon) {
+        mokepon.pintarMokepon()
+    })
+
+    //Revisando las colisiones
     if (mascotaJugadorObjeto.velocidadX !== 0 || mascotaJugadorObjeto.velocidadY !== 0) {
         revisarColision(hipodogeEnemigo);
         revisarColision(capipepoEnemigo);
@@ -453,7 +456,7 @@ function enviarPosicion(x, y) {
             .then(function ({enemigos}) {
                 console.log(enemigos);
                 
-                enemigos.forEach(function (enemigo) {
+                mokeponesEnemigos = enemigos.map(function (enemigo) {
                     let mokeponEnemigo = null;
                     const mokeponNombre = enemigo.mokepon.nombre || ""; //Esto es lo que viene del servidor
 
@@ -468,7 +471,7 @@ function enviarPosicion(x, y) {
                     mokeponEnemigo.x = enemigo.x;
                     mokeponEnemigo.y = enemigo.y;
 
-                    mokeponEnemigo.pintarMokepon();
+                    return mokeponEnemigo
                 })
                 
             })
