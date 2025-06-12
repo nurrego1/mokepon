@@ -82,7 +82,13 @@ app.post("/mokepon/:jugadorId/posicion", (req, res) => {
         jugadores[jugadorIndex].actualizarPosicion(x, y);
     }
 
-    res.end();
+    //lista con todos los enemigos
+    const enemigos = jugadores.filter((jugador) => jugadorId !== jugador.id);
+
+    res.send({
+        enemigos
+    });
+
 })
 
 
