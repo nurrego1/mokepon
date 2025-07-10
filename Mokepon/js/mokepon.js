@@ -21,6 +21,7 @@ const mapa = document.getElementById("mapa");
 const anchoMaximoDelMapa = 800;
 
 let jugadorId = null;
+let enemigoId = null; //para guardar el id del enemigo
 let mokepones = [];
 let mokeponesEnemigos = [];
 let ataqueJugador = [];
@@ -288,9 +289,27 @@ function secuenciaAtaque() {
                 boton.disabled = true;
             }
             console.log(ataqueJugador);
-            ataqueAleatorioEnemigo();
+            if (ataqueJugador.length === 6) {
+                enviarAtaques();
+            }
         })
     })
+}
+
+//Funcion enviar ataques al servidor
+function enviarAtaques() {  
+    fetch(`http://localhost:8080/mokepon/${jugadorId}/ataques`, {
+        method: "post",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            ataques: ataqueJugador
+        })
+    })
+    /* intervalo = setInterval(() => {
+        ataqueAleatorioEnemigo();
+    }, 2000) */
 }
 
 //Funcion seleccionar mascota enemigo
@@ -426,17 +445,11 @@ function pintarCanvas() {
     // funcion para enviar posicion al servidor
     enviarPosicion(mascotaJugadorObjeto.x, mascotaJugadorObjeto.y);
 
-    //Ahora pintamos los mokepones enemigos
+    //Ahora pintamos los mokepones enemigos y revisamos la colision
     mokeponesEnemigos.forEach( function(mokepon) {
         mokepon.pintarMokepon()
+        revisarColision(mokepon);
     })
-
-    //Revisando las colisiones
-    if (mascotaJugadorObjeto.velocidadX !== 0 || mascotaJugadorObjeto.velocidadY !== 0) {
-        revisarColision(hipodogeEnemigo);
-        revisarColision(capipepoEnemigo);
-        revisarColision(ratigueyaEnemigo);
-    }
 }
 
 function enviarPosicion(x, y) {
@@ -461,11 +474,11 @@ function enviarPosicion(x, y) {
                     const mokeponNombre = enemigo.mokepon.nombre || ""; //Esto es lo que viene del servidor
 
                     if(mokeponNombre === "Hipodoge") { 
-                        mokeponEnemigo = new Mokepon("Hipodoge", "./assets/mokepons_mokepon_hipodoge_attack.png", 6, "./assets/hipodoge.png");
+                        mokeponEnemigo = new Mokepon("Hipodoge", "./assets/mokepons_mokepon_hipodoge_attack.png", 6, "./assets/hipodoge.png", enemigo.id);
                     } else if (mokeponNombre === "Capipepo") {
-                        mokeponEnemigo = new Mokepon("Capipepo", "./assets/mokepons_mokepon_capipepo_attack.png", 6, "./assets/capipepo.png");
+                        mokeponEnemigo = new Mokepon("Capipepo", "./assets/mokepons_mokepon_capipepo_attack.png", 6, "./assets/capipepo.png", enemigo.id);
                     } else if (mokeponNombre === "Ratigueya") {
-                        mokeponEnemigo = new Mokepon("Ratigueya", "./assets/mokepons_mokepon_ratigueya_attack.png", 6, "./assets/ratigueya.png");
+                        mokeponEnemigo = new Mokepon("Ratigueya", "./assets/mokepons_mokepon_ratigueya_attack.png", 6, "./assets/ratigueya.png", enemigo.id);
                     }
 
                     mokeponEnemigo.x = enemigo.x;
@@ -561,6 +574,8 @@ function revisarColision(enemigo) {
 
     detenerMovimiento();
     clearInterval(intervalo); //para limpiar el intervalo de pintarCanvas y que la colision se detecte 1 sola vez y no me multiplique los ataques del jugador en el array 
+    console.log("Colisión detectada");
+    enemigoId = enemigo.id || null; // Guardar el id del enemigo
     sectionSeleccionarAtaque.style.display = "Flex";
     sectionVerMapa.style.display = "none";
     window.removeEventListener("keydown", sePresionoUnaTecla);
