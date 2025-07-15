@@ -110,6 +110,16 @@ app.post("/mokepon/:jugadorId/ataques", (req, res) => {
     res.end();
 })
 
+//Este endpoint es para obtener los ataques del jugador
+app.get("/mokepon/:jugadorId/ataques", (req, res) => {
+    const jugadorId = req.params.jugadorId || "";
+    const jugador = jugadores.find((jugador) => jugador.id === jugadorId); //buscamos el jugador por su ID y lo guardamos en la variable jugador
+    res.send({
+        ataques: jugador.ataques || [] //si el jugador tiene ataques, los devuelve, si no, devuelve un array vacio
+    });
+})
+
+
 app.listen(8080, () => {
     console.log("Servidor escuchando en el puerto 8080");
 }); //para hacer que escuche las peticiones de los clientes (el navegador), que se mantenga escuchando por medio de un puerto, es lo que hay que indicarle una vez  este listo tenemos nuestro minimo codigo necesario. en este caso el puerto 8080. 

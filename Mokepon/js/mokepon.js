@@ -307,9 +307,22 @@ function enviarAtaques() {
             ataques: ataqueJugador
         })
     })
-    /* intervalo = setInterval(() => {
-        ataqueAleatorioEnemigo();
-    }, 2000) */
+    intervalo = setInterval(obtenerAtaques, 50);
+}
+
+function obtenerAtaques() {
+    fetch(`http://localhost:8080/mokepon/${enemigoId}/ataques`)
+    .then(function (res) {
+        if (res.ok) {
+            res.json()
+            .then(function ({ ataques }) {
+                if (ataques.length === 6) {
+                    ataqueEnemigo = ataques;
+                    combate();
+                }
+            })
+        }
+    })
 }
 
 //Funcion seleccionar mascota enemigo
@@ -357,6 +370,8 @@ function combate() {
     // agua le gana a fuego 
     // tierra le gana a agua
     // aire le gana a tierra   
+
+    clearInterval(intervalo);
 
     for (let i = 0; i < ataqueJugador.length; i++) {
         if (ataqueJugador[i] === ataqueEnemigo[i]) {
