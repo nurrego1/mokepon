@@ -462,7 +462,10 @@ function pintarCanvas() {
 
     //Ahora pintamos los mokepones enemigos y revisamos la colision
     mokeponesEnemigos.forEach( function(mokepon) {
-        mokepon.pintarMokepon()
+        if (mokepon == null) {
+            return;
+        }
+        mokepon.pintarMokepon();
         revisarColision(mokepon);
     })
 }
@@ -486,7 +489,7 @@ function enviarPosicion(x, y) {
                 
                 mokeponesEnemigos = enemigos.map(function (enemigo) {
                     let mokeponEnemigo = null;
-                    const mokeponNombre = enemigo.mokepon.nombre || ""; //Esto es lo que viene del servidor
+                    const mokeponNombre = enemigo?.mokepon?.nombre || ""; //Esto es lo que viene del servidor
 
                     if(mokeponNombre === "Hipodoge") { 
                         mokeponEnemigo = new Mokepon("Hipodoge", "./assets/mokepons_mokepon_hipodoge_attack.png", 6, "./assets/hipodoge.png", enemigo.id);
@@ -496,8 +499,10 @@ function enviarPosicion(x, y) {
                         mokeponEnemigo = new Mokepon("Ratigueya", "./assets/mokepons_mokepon_ratigueya_attack.png", 6, "./assets/ratigueya.png", enemigo.id);
                     }
 
-                    mokeponEnemigo.x = enemigo.x;
-                    mokeponEnemigo.y = enemigo.y;
+                    if(mokeponEnemigo != null) {
+                        mokeponEnemigo.x = enemigo.x;
+                        mokeponEnemigo.y = enemigo.y;
+                    }
 
                     return mokeponEnemigo
                 })
