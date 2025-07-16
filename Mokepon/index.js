@@ -27,6 +27,10 @@ class Jugador {
         this.x = x;
         this.y = y;
     }
+
+    asignarAtaques(ataques) {
+        this.ataques = ataques;
+    }
 }
 
 class Mokepon {
@@ -89,6 +93,30 @@ app.post("/mokepon/:jugadorId/posicion", (req, res) => {
         enemigos
     });
 
+})
+
+//Este endpoint es para recibir la informacion de los ataques del mokepon
+app.post("/mokepon/:jugadorId/ataques", (req, res) => {
+    const jugadorId = req.params.jugadorId || "";
+    const ataques = req.body.ataques || []; 
+
+    const jugadorIndex = jugadores.findIndex((jugador) => jugadorId === jugador.id);
+
+    if (jugadorIndex >= 0) {
+        //jugadores[jugadorIndex].ataques = ataques;
+        jugadores[jugadorIndex].asignarAtaques(ataques);
+    }
+
+    res.end();
+})
+
+//Este endpoint es para obtener los ataques del jugador
+app.get("/mokepon/:jugadorId/ataques", (req, res) => {
+    const jugadorId = req.params.jugadorId || "";
+    const jugador = jugadores.find((jugador) => jugador.id === jugadorId); //buscamos el jugador por su ID y lo guardamos en la variable jugador
+    res.send({
+        ataques: jugador.ataques || [] //si el jugador tiene ataques, los devuelve, si no, devuelve un array vacio
+    });
 })
 
 
