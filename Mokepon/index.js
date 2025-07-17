@@ -5,6 +5,7 @@ const cors = require("cors"); //libreria
 
 const app = express();
 
+app.use(express.static("public")); //esto es para que el servidor pueda servir archivos estaticos, como el index.html, css, js, etc. que estan en la carpeta public.
 app.use(cors()); //soluciona o desahilita los posibles errores relacionados con CORS
 app.use(express.json()); //habilita la capacidad de recibir peticiones "post" que traigan contenido en formato JSON
 

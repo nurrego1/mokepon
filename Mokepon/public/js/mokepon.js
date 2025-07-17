@@ -182,7 +182,7 @@ function iniciarJuego() {
 
 //Funcion unirse al juego con fetch tipo get
 function unirseAlJuego() {
-    fetch("http://localhost:8080/unirse") //el metodo por defecto es tipo get, pero si queremos  el metodo tipo post hay que especificarlo asi:  fetch("http://localhost:8080/unirse", {method: "POST"})
+    fetch("http://192.168.1.110:8080/unirse") //el metodo por defecto es tipo get, pero si queremos  el metodo tipo post hay que especificarlo asi:  fetch("http://192.168.1.110:8080/unirse", {method: "POST"})
         .then(function (res) {
             //console.log(res)
             if (res.ok) {
@@ -215,12 +215,12 @@ function seleccionarMascotaJugador() {
         return; // ⛔ Detener función si no hay selección
     }
 
+    sectionSeleccionarMascota.style.display = "none"; //ocultar la seccion de seleccionar mascota
     seleccionarMokepon(mascotaJugador)
 
 
     // ✅ Mostrar ataque solo si hay una mascota válida
     extraerAtaques(mascotaJugador);
-    sectionSeleccionarMascota.style.display = "none";
     sectionVerMapa.style.display = "flex"; 
     iniciarMapa();
 }
@@ -573,6 +573,9 @@ function obtenerObjetosMokepon(mascotaJugador) {
 }
 
 function revisarColision(enemigo) {
+    if (enemigo.y == null || enemigo.x == null) {
+        return; // Si el enemigo no tiene coordenadas, no hacer nada
+    }
     const arribaEnemigo = enemigo.y;
     const abajoEnemigo = enemigo.y + enemigo.alto;
     const derechaEnemigo = enemigo.x + enemigo.ancho;
