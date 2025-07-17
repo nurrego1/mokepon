@@ -573,6 +573,9 @@ function obtenerObjetosMokepon(mascotaJugador) {
 }
 
 function revisarColision(enemigo) {
+    if (enemigo.y == null || enemigo.x == null) {
+        return; // Si el enemigo no tiene coordenadas, no hacer nada
+    }
     const arribaEnemigo = enemigo.y;
     const abajoEnemigo = enemigo.y + enemigo.alto;
     const derechaEnemigo = enemigo.x + enemigo.ancho;
